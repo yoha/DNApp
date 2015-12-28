@@ -23,7 +23,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gR-aH-DQJ">
                                 <rect key="frame" x="6" y="20" width="44" height="44"/>
                                 <connections>
-                                    <segue destination="EVO-hD-p0f" kind="presentation" identifier="showMenu" modalTransitionStyle="crossDissolve" id="4k1-Ou-REd"/>
+                                    <segue destination="EVO-hD-p0f" kind="presentation" identifier="showMenu" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="4k1-Ou-REd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nKV-r2-Bxl">
@@ -64,28 +64,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="5-Web" translatesAutoresizingMaskIntoConstraints="NO" id="xkU-cm-uvK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGZ-Sa-3AC">
-                                <rect key="frame" x="20" y="504" width="44" height="44"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WgI-sG-d5h">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGZ-Sa-3AC" customClass="DesignableButton" customModule="DNApp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="536" width="44" height="44"/>
+                                <color key="backgroundColor" red="0.15294117647058825" green="0.61176470588235299" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ot1-JB-766"/>
+                                    <constraint firstAttribute="width" constant="44" id="rT5-z0-tGz"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="icon-close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideUp"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="vTK-nM-Nen" kind="unwind" unwindAction="unwindToViewController:" id="Db5-Eq-YdS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOU-7r-JHe" customClass="DesignableButton" customModule="DNApp" customModuleProvider="target">
+                                <rect key="frame" x="84" y="536" width="44" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="deviceRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="contentEdgeInsets" minX="0.5" minY="0.0" maxX="0.0" maxY="3"/>
+                                <state key="normal" image="action-share"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideUp"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="or1-OK-I9q" firstAttribute="top" secondItem="WgI-sG-d5h" secondAttribute="bottom" id="8IB-G4-fm3"/>
+                            <constraint firstItem="WgI-sG-d5h" firstAttribute="leading" secondItem="Mn1-hu-IYq" secondAttribute="leading" id="DN5-Bg-DTJ"/>
+                            <constraint firstItem="VOU-7r-JHe" firstAttribute="leading" secondItem="DGZ-Sa-3AC" secondAttribute="trailing" constant="20" id="Dns-X8-tRs"/>
+                            <constraint firstItem="VOU-7r-JHe" firstAttribute="centerY" secondItem="DGZ-Sa-3AC" secondAttribute="centerY" id="LEi-Dq-f8b"/>
+                            <constraint firstItem="VOU-7r-JHe" firstAttribute="height" secondItem="DGZ-Sa-3AC" secondAttribute="height" id="dtE-Ki-bff"/>
+                            <constraint firstItem="or1-OK-I9q" firstAttribute="top" secondItem="DGZ-Sa-3AC" secondAttribute="bottom" constant="20" id="g4A-KH-ixb"/>
+                            <constraint firstItem="WgI-sG-d5h" firstAttribute="top" secondItem="Mn1-hu-IYq" secondAttribute="top" id="hQm-3f-T3d"/>
+                            <constraint firstAttribute="trailing" secondItem="WgI-sG-d5h" secondAttribute="trailing" id="kRc-BP-mnw"/>
+                            <constraint firstItem="VOU-7r-JHe" firstAttribute="width" secondItem="DGZ-Sa-3AC" secondAttribute="width" id="ueQ-jQ-cVQ"/>
+                            <constraint firstItem="DGZ-Sa-3AC" firstAttribute="leading" secondItem="Mn1-hu-IYq" secondAttribute="leading" constant="20" id="ujI-cO-SM7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awf-b1-8J1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vTK-nM-Nen" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="303.75" y="1192.6056338028168"/>
+            <point key="canvasLocation" x="303" y="1192"/>
         </scene>
-        <!--View Controller-->
+        <!--Learn View Controller-->
         <scene sceneID="yV0-c1-oz5">
             <objects>
-                <viewController id="X1w-m0-HtC" sceneMemberID="viewController">
+                <viewController id="X1w-m0-HtC" customClass="LearnViewController" customModule="DNApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="88r-gN-8Yl"/>
                         <viewControllerLayoutGuide type="bottom" id="T61-2z-x7H"/>
@@ -94,21 +141,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="7-Learn" translatesAutoresizingMaskIntoConstraints="NO" id="fwB-iQ-AIG">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Is-UoZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rqd-xk-p1j">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ctw-p6-hRE">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rD-Is-UoZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="iSa-lC-XgY" kind="unwind" unwindAction="unwindToViewController:" id="g3x-8T-KnW"/>
+                                    <action selector="closeButtonDidTouch:" destination="X1w-m0-HtC" eventType="touchUpInside" id="VDb-U2-OVh"/>
                                 </connections>
                             </button>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ezS-br-ve2" customClass="DesignableView" customModule="DNApp" customModuleProvider="target">
+                                <rect key="frame" x="160" y="160" width="280" height="280"/>
+                                <subviews>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="bg-credits" translatesAutoresizingMaskIntoConstraints="NO" id="rSL-Jt-DDN">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="140"/>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="icon-sketch" translatesAutoresizingMaskIntoConstraints="NO" id="Wsq-lL-Yub" customClass="SpringImageView" customModule="DNApp" customModuleProvider="target">
+                                        <rect key="frame" x="201" y="39" width="64" height="61"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideLeft"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="icon-book" translatesAutoresizingMaskIntoConstraints="NO" id="90h-zP-bzj" customClass="SpringImageView" customModule="DNApp" customModuleProvider="target">
+                                        <rect key="frame" x="68" y="9" width="125" height="122"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideDown"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.20000000000000001"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="icon-xcode" translatesAutoresizingMaskIntoConstraints="NO" id="aek-AO-n2T" customClass="SpringImageView" customModule="DNApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="40" width="64" height="59"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animation" value="slideRight"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="delay">
+                                                <real key="value" value="0.29999999999999999"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMJ-Nq-Zs0">
+                                        <rect key="frame" x="0.0" y="139" width="280" height="70"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                        <state key="normal" title="Learn Swift + Sketch"/>
+                                        <connections>
+                                            <action selector="learnButtonDidTouch:" destination="X1w-m0-HtC" eventType="touchUpInside" id="3Eu-ZO-Vh1"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7WI-bc-IiW">
+                                        <rect key="frame" x="0.0" y="210" width="280" height="70"/>
+                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="@MengTo" image="icon-twitter"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1960784314" green="0.23529411759999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="1Qj-9X-L5L"/>
+                                    <constraint firstAttribute="width" constant="280" id="FuL-2D-MVq"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rqd-xk-p1j" secondAttribute="trailing" id="C7i-PG-nMV"/>
+                            <constraint firstItem="7rD-Is-UoZ" firstAttribute="leading" secondItem="3hH-ir-L4c" secondAttribute="leading" id="Cr4-VL-Elg"/>
+                            <constraint firstItem="7rD-Is-UoZ" firstAttribute="top" secondItem="3hH-ir-L4c" secondAttribute="top" id="Jkr-qn-0NF"/>
+                            <constraint firstItem="rqd-xk-p1j" firstAttribute="leading" secondItem="3hH-ir-L4c" secondAttribute="leading" id="KFL-th-dlj"/>
+                            <constraint firstItem="ezS-br-ve2" firstAttribute="centerX" secondItem="3hH-ir-L4c" secondAttribute="centerX" id="MnP-wJ-6hp"/>
+                            <constraint firstAttribute="trailing" secondItem="7rD-Is-UoZ" secondAttribute="trailing" id="WNr-Df-BJI"/>
+                            <constraint firstItem="T61-2z-x7H" firstAttribute="top" secondItem="7rD-Is-UoZ" secondAttribute="bottom" id="eyq-6f-wJu"/>
+                            <constraint firstItem="rqd-xk-p1j" firstAttribute="top" secondItem="3hH-ir-L4c" secondAttribute="top" id="i5z-fG-fKd"/>
+                            <constraint firstItem="T61-2z-x7H" firstAttribute="top" secondItem="rqd-xk-p1j" secondAttribute="bottom" id="wJf-hY-6bB"/>
+                            <constraint firstItem="ezS-br-ve2" firstAttribute="centerY" secondItem="3hH-ir-L4c" secondAttribute="centerY" id="xaP-dk-zdg"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bookIconImageView" destination="90h-zP-bzj" id="mNS-bU-D8B"/>
+                        <outlet property="dialogView" destination="ezS-br-ve2" id="UAu-5u-PP4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KDl-Jf-whR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="iSa-lC-XgY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2130" y="-523.94366197183092"/>
         </scene>
@@ -154,29 +283,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="4-Menu" translatesAutoresizingMaskIntoConstraints="NO" id="Qjo-fu-wk9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XK-dk-oUP">
-                                <rect key="frame" x="46" y="322" width="100" height="100"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XK-dk-oUP">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <connections>
-                                    <segue destination="X1w-m0-HtC" kind="presentation" identifier="showLearn" modalTransitionStyle="crossDissolve" id="sH1-Uq-gFi"/>
+                                    <segue destination="ieV-fM-UVs" kind="unwind" unwindAction="unwindToViewController:" id="oxM-FZ-zoc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cm-I0-pXt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="314"/>
-                                <connections>
-                                    <segue destination="ieV-fM-UVs" kind="unwind" unwindAction="unwindToViewController:" id="QUb-Q5-gRk"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="prS-JA-ufD" customClass="DesignableView" customModule="DNApp" customModuleProvider="target">
+                                <rect key="frame" x="160" y="160" width="280" height="280"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77N-50-aDr">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
+                                        <state key="normal" image="big-top"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top Stories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-Sh-5sU">
+                                        <rect key="frame" x="29" y="88" width="82" height="22"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EhP-Yy-QCn">
+                                        <rect key="frame" x="140" y="0.0" width="140" height="140"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
+                                        <state key="normal" image="big-recent"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7j-7f-q2g">
+                                        <rect key="frame" x="185" y="88" width="51" height="22"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6i-Mg-8ev">
+                                        <rect key="frame" x="140" y="140" width="140" height="140"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
+                                        <state key="normal" image="big-login"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdQ-Zk-v1X">
+                                        <rect key="frame" x="189" y="228" width="42" height="22"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5P-gz-IHl">
+                                        <rect key="frame" x="0.0" y="140" width="140" height="140"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
+                                        <state key="normal" image="big-credits"/>
+                                        <connections>
+                                            <segue destination="X1w-m0-HtC" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="CQt-8Z-Cbo"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Learn iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9S-n1-Ia1">
+                                        <rect key="frame" x="34" y="228" width="72" height="22"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="16"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29411764709999999" green="0.4941176471" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="Ko7-7b-M0J"/>
+                                    <constraint firstAttribute="width" constant="280" id="rLs-gB-sx8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="autostart" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="animation" value="squeezeDown"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1XK-dk-oUP" firstAttribute="leading" secondItem="V2V-if-FtD" secondAttribute="leading" id="CBk-79-oMI"/>
+                            <constraint firstItem="T3N-z2-vBE" firstAttribute="top" secondItem="1XK-dk-oUP" secondAttribute="bottom" id="FHH-rW-jl1"/>
+                            <constraint firstItem="prS-JA-ufD" firstAttribute="centerY" secondItem="V2V-if-FtD" secondAttribute="centerY" id="bZe-nS-Cor"/>
+                            <constraint firstAttribute="trailing" secondItem="1XK-dk-oUP" secondAttribute="trailing" id="fj2-hX-BEG"/>
+                            <constraint firstItem="1XK-dk-oUP" firstAttribute="top" secondItem="V2V-if-FtD" secondAttribute="top" id="p2Z-TO-z8n"/>
+                            <constraint firstItem="prS-JA-ufD" firstAttribute="centerX" secondItem="V2V-if-FtD" secondAttribute="centerX" id="xnK-FA-90L"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VzL-VL-NkL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="ieV-fM-UVs" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1258.125" y="-133.09859154929578"/>
+            <point key="canvasLocation" x="1258" y="-134"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="egb-aW-80V">
@@ -214,10 +410,10 @@
             </objects>
             <point key="canvasLocation" x="1258.125" y="874.64788732394356"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="DCT-Fq-Z6Y">
             <objects>
-                <viewController id="dw6-KR-CNG" sceneMemberID="viewController">
+                <viewController id="dw6-KR-CNG" customClass="LoginViewController" customModule="DNApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Icc-hj-zqr"/>
                         <viewControllerLayoutGuide type="bottom" id="GvP-L3-Prp"/>
@@ -246,13 +442,13 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lm-WK-oIo">
                                         <rect key="frame" x="100" y="25" width="80" height="28"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Designer News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3N-X1-eWh">
                                         <rect key="frame" x="69" y="56" width="142" height="28"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="20"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" background="input-outline" translatesAutoresizingMaskIntoConstraints="NO" id="724-H7-s1H" customClass="DesignableTextField" customModule="DNApp" customModuleProvider="target">
@@ -308,6 +504,9 @@
                                                 <real key="value" value="3"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="loginButtonDidTouch:" destination="dw6-KR-CNG" eventType="touchUpInside" id="c6h-Bi-EJ5"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -355,6 +554,9 @@
                             <constraint firstItem="GvP-L3-Prp" firstAttribute="top" secondItem="hkM-Bw-28o" secondAttribute="bottom" id="qIO-un-0vv"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dialogView" destination="2UN-gd-yVl" id="yXY-mN-3HY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FlR-5c-niD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UFD-55-ddi" userLabel="Exit" sceneMemberID="exit"/>
@@ -365,12 +567,20 @@
     <resources>
         <image name="1-Stories" width="320" height="568"/>
         <image name="2-Comments" width="320" height="1161"/>
-        <image name="4-Menu" width="320" height="568"/>
-        <image name="5-Web" width="320" height="568"/>
         <image name="6-Comment" width="320" height="568"/>
-        <image name="7-Learn" width="320" height="568"/>
+        <image name="action-share" width="19" height="27"/>
+        <image name="bg-credits" width="280" height="140"/>
+        <image name="big-credits" width="47" height="44"/>
+        <image name="big-login" width="38" height="38"/>
+        <image name="big-recent" width="36" height="36"/>
+        <image name="big-top" width="41" height="39"/>
+        <image name="icon-book" width="125" height="122"/>
+        <image name="icon-close" width="19" height="19"/>
         <image name="icon-mail" width="26" height="18"/>
         <image name="icon-password" width="25" height="25"/>
+        <image name="icon-sketch" width="64" height="61"/>
+        <image name="icon-twitter" width="18" height="14"/>
+        <image name="icon-xcode" width="64" height="59"/>
         <image name="input-outline" width="7" height="44"/>
     </resources>
 </document>
