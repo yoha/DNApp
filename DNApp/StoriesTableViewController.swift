@@ -20,11 +20,12 @@ class StoriesTableViewController: UITableViewController {
         self.performSegueWithIdentifier("loginSegue", sender: self)
     }
     
-    
     // MARK: - UITableViewController Methods
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
         
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
@@ -41,7 +42,14 @@ class StoriesTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("StoryCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("StoryCell", forIndexPath: indexPath) as! StoryTableViewCell
+        cell.badgeImageView.image = UIImage(named: "badge-apple")
+        cell.titleLabel.text = "Learn iOS Design & Xcode"
+        cell.avatarImageView.image = UIImage(named: "content-avatar-default")
+        cell.authorLabel.text = "Yohannes Wijaya: Coder & Designer"
+        cell.timeLabel.text = "1h"
+        cell.upvoteButton.setTitle("123", forState: UIControlState.Normal)
+        cell.commentButton.setTitle("321", forState: .Normal)
         return cell
     }
     
