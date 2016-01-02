@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol StoryTableViewCellDelegate: class {
+    func StoryTableViewCellDelegateUpvoteButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject)
+    func StoryTableViewCellDelegateCommentButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject)
+}
+
 class StoryTableViewCell: UITableViewCell {
+
+    // MARK: - Stored Properties
+    
+    weak var delegate: StoryTableViewCellDelegate?
     
     // MARK: - IBOutlet Properties
 
@@ -26,10 +35,14 @@ class StoryTableViewCell: UITableViewCell {
         sender.animation = "swing"
         sender.force = 3.0
         sender.animate()
+        
+        self.delegate?.StoryTableViewCellDelegateUpvoteButtonDidTouch(self, sender: sender)
     }
     
     @IBAction func commentButtonDidTouch(sender: SpringButton) {
         self.commentButton.animation = "pop"
         self.commentButton.animate()
+        
+        self.delegate?.StoryTableViewCellDelegateCommentButtonDidTouch(self, sender: sender)
     }
 }

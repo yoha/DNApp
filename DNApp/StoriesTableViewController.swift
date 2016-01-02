@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoriesTableViewController: UITableViewController {
+class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate {
     
     // MARK: - IBAction Methods
     
@@ -50,6 +50,9 @@ class StoriesTableViewController: UITableViewController {
         cell.timeLabel.text = "1h"
         cell.upvoteButton.setTitle("123", forState: UIControlState.Normal)
         cell.commentButton.setTitle("321", forState: .Normal)
+        
+        cell.delegate = self
+        
         return cell
     }
     
@@ -58,5 +61,15 @@ class StoriesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.performSegueWithIdentifier("webSegue", sender: self)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    // MARK: - StoryTableViewCellDelegate Methods
+    
+    func StoryTableViewCellDelegateUpvoteButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject) {
+        // TODO: - implement upvote
+    }
+    
+    func StoryTableViewCellDelegateCommentButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject) {
+        self.performSegueWithIdentifier("commentsSegue", sender: cell)
     }
 }
