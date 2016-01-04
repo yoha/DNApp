@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		650604D21C30DFF100F949ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650604D11C30DFF100F949ED /* LoginViewController.swift */; };
+		653904C31C3A1F0E003C8F18 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653904C21C3A1F0E003C8F18 /* Data.swift */; };
 		6564E7921C2C3DF800BD3587 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564E7741C2C3DF800BD3587 /* AsyncButton.swift */; };
 		6564E7931C2C3DF800BD3587 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564E7751C2C3DF800BD3587 /* AsyncImageView.swift */; };
 		6564E7941C2C3DF800BD3587 /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564E7761C2C3DF800BD3587 /* AutoTextView.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		650604D11C30DFF100F949ED /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		653904C21C3A1F0E003C8F18 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		6564E7741C2C3DF800BD3587 /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		6564E7751C2C3DF800BD3587 /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		6564E7761C2C3DF800BD3587 /* AutoTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoTextView.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				6596E4641C312F03009A2AE4 /* LearnViewController.swift */,
 				65F508591C33B86500FA8EDB /* MenuViewController.swift */,
 				65F508571C33AD6F00FA8EDB /* WebViewController.swift */,
+				653904C21C3A1F0E003C8F18 /* Data.swift */,
 			);
 			path = DNApp;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				6564E79D1C2C3DF800BD3587 /* ImageLoader.swift in Sources */,
 				6564E7A21C2C3DF800BD3587 /* Misc.swift in Sources */,
 				6596E4651C312F03009A2AE4 /* LearnViewController.swift in Sources */,
+				653904C31C3A1F0E003C8F18 /* Data.swift in Sources */,
 				6564E7951C2C3DF800BD3587 /* BlurView.swift in Sources */,
 				6564E7AE1C2C3DF800BD3587 /* UnwindSegue.swift in Sources */,
 				6564E7A01C2C3DF800BD3587 /* LoadingView.swift in Sources */,

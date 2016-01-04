@@ -10,6 +10,10 @@ import UIKit
 
 class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate {
     
+    // MARK: - Stored Properties
+    
+    let data = Data()
+    
     // MARK: - IBAction Methods
     
     @IBAction func menuButtonDidTouch(sender: UIBarButtonItem) {
@@ -38,19 +42,13 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     // MARK: - UITableViewDataSource Methods
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.data.jsonData.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StoryCell", forIndexPath: indexPath) as! StoryTableViewCell
-        cell.badgeImageView.image = UIImage(named: "badge-apple")
-        cell.titleLabel.text = "Learn iOS Design & Xcode"
-        cell.avatarImageView.image = UIImage(named: "content-avatar-default")
-        cell.authorLabel.text = "Yohannes Wijaya: Coder & Designer"
-        cell.timeLabel.text = "1h"
-        cell.upvoteButton.setTitle("123", forState: UIControlState.Normal)
-        cell.commentButton.setTitle("321", forState: .Normal)
-        
+        let article = self.data.jsonData[indexPath.row]
+        cell.configureCellWithArticle(article)
         cell.delegate = self
         
         return cell
