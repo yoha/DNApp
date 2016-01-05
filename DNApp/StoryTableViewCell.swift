@@ -23,13 +23,14 @@ class StoryTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlet Properties
 
-    @IBOutlet var badgeImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var avatarImageView: UIImageView!
-    @IBOutlet var authorLabel: UILabel!
-    @IBOutlet var timeLabel: UILabel!
-    @IBOutlet var upvoteButton: SpringButton!
-    @IBOutlet var commentButton: SpringButton!
+    @IBOutlet weak var badgeImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var upvoteButton: SpringButton!
+    @IBOutlet weak var commentButton: SpringButton!
+    @IBOutlet weak var commentTextView: AutoTextView!
     
     // MARK: - IBAction Properties
     
@@ -42,9 +43,6 @@ class StoryTableViewCell: UITableViewCell {
     }
     
     @IBAction func commentButtonDidTouch(sender: SpringButton) {
-        self.commentButton.animation = "pop"
-        self.commentButton.animate()
-        
         self.delegate?.StoryTableViewCellDelegateCommentButtonDidTouch(self, sender: sender)
     }
     
@@ -72,8 +70,12 @@ class StoryTableViewCell: UITableViewCell {
         
         guard let validVoteCount = article["vote_count"] as? Int else { return }
         self.upvoteButton.setTitle("\(validVoteCount)", forState: UIControlState.Normal)
-        
+       
         guard let validCommentCount = article["comment_count"] as? Int else { return }
         self.commentButton.setTitle("\(validCommentCount)", forState: .Normal)
+        
+        guard let validCommentTextView = self.commentTextView else { return }
+        guard let validComment = article["comment"] as? String else { return }
+        validCommentTextView.text = validComment
     }
 }

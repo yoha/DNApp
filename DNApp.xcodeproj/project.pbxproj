@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		650604D21C30DFF100F949ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650604D11C30DFF100F949ED /* LoginViewController.swift */; };
 		653904C31C3A1F0E003C8F18 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653904C21C3A1F0E003C8F18 /* Data.swift */; };
+		653904C51C3BB33B003C8F18 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653904C41C3BB33B003C8F18 /* CommentsTableViewController.swift */; };
 		6564E7921C2C3DF800BD3587 /* AsyncButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564E7741C2C3DF800BD3587 /* AsyncButton.swift */; };
 		6564E7931C2C3DF800BD3587 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564E7751C2C3DF800BD3587 /* AsyncImageView.swift */; };
 		6564E7941C2C3DF800BD3587 /* AutoTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6564E7761C2C3DF800BD3587 /* AutoTextView.swift */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		650604D11C30DFF100F949ED /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		653904C21C3A1F0E003C8F18 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		653904C41C3BB33B003C8F18 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
 		6564E7741C2C3DF800BD3587 /* AsyncButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncButton.swift; sourceTree = "<group>"; };
 		6564E7751C2C3DF800BD3587 /* AsyncImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		6564E7761C2C3DF800BD3587 /* AutoTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoTextView.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				6564E7731C2C3DF800BD3587 /* Spring */,
 				65C39C231C2A9FC9006C18CE /* AppDelegate.swift */,
 				65F508531C33849300FA8EDB /* StoriesTableViewController.swift */,
+				653904C41C3BB33B003C8F18 /* CommentsTableViewController.swift */,
 				658880AA1C355F380025EC04 /* StoryTableViewCell.swift */,
 				65C39C271C2A9FC9006C18CE /* Main.storyboard */,
 				65C39C2D1C2A9FC9006C18CE /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 				6564E7A01C2C3DF800BD3587 /* LoadingView.swift in Sources */,
 				6564E7A91C2C3DF800BD3587 /* SpringTextField.swift in Sources */,
 				65F5085A1C33B86500FA8EDB /* MenuViewController.swift in Sources */,
+				653904C51C3BB33B003C8F18 /* CommentsTableViewController.swift in Sources */,
 				6564E7A41C2C3DF800BD3587 /* Spring.swift in Sources */,
 				6564E7A31C2C3DF800BD3587 /* SoundPlayer.swift in Sources */,
 				6564E79C1C2C3DF800BD3587 /* DesignableView.swift in Sources */,

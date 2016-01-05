@@ -61,6 +61,15 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
+    // MARK: - UIViewController Methods
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard segue.identifier == "commentsSegue" else { return }
+        guard let validDestinationContoller = segue.destinationViewController as? CommentsTableViewController else { return }
+        guard let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell) else { return }
+        validDestinationContoller.article = self.data.jsonData[indexPath.row]
+    }
+    
     // MARK: - StoryTableViewCellDelegate Methods
     
     func StoryTableViewCellDelegateUpvoteButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject) {
