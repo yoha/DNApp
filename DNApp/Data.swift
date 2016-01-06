@@ -9,7 +9,7 @@
 import UIKit
 
 class Data: NSObject {
-    let jsonData: Array<Dictionary<String, AnyObject>> = [
+    let jsonData: JSON = [
         [
             "id": 44959,
             "title": "Testing Apple watch applications my way!",

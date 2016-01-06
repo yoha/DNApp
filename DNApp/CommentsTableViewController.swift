@@ -12,14 +12,38 @@ class CommentsTableViewController: UITableViewController {
     
     // MARK - Stored Properties
     
-    var article = [String: AnyObject]()
+    var article: JSON!
+    var comments: JSON!
+    
+    // MARK: - UITableViewDataSource Methods
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.comments.count + 1
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = indexPath.row == 0 ? "StoryCell" : "CommentCell"
+        
+        let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) 
+        if let storyCell = cell as? StoryTableViewCell {
+            storyCell.configureCellWithArticle(self.article)
+        }
+        else if let commentCell = cell as? CommentTableViewCell {
+            let commentAtIndex = self.comments[indexPath.row - 1]
+            commentCell.configureCellWithComment(commentAtIndex)
+        }
+        return cell
+    }
     
     // MARK: - UIViewController Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(article)
+        self.tableView.estimatedRowHeight = 140
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.comments = self.article["comments"]
     }
 
 }

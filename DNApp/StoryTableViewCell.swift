@@ -48,34 +48,34 @@ class StoryTableViewCell: UITableViewCell {
     
     // MARK: - Local Methods
     
-    func configureCellWithArticle(article: [String: AnyObject]) {
+    func configureCellWithArticle(article: JSON) {
         
-        guard let validTitle = article["title"] as? String else { return }
+        guard let validTitle = article["title"].string else { return }
         self.titleLabel.text = validTitle
         
-        guard let validBadge = article["badge"] as? String else { return }
+        guard let validBadge = article["badge"].string else { return }
         self.badgeImageView.image = UIImage(named: "badge-" + validBadge )
         
-        guard let _ = article["user_portrait_url"] as? String else { return }
+        guard let _ = article["user_portrait_url"].string else { return }
         self.avatarImageView.image = UIImage(named: "content-avatar-default")
         
-        guard let validUserDisplayName = article["user_display_name"] as? String else { return }
+        guard let validUserDisplayName = article["user_display_name"].string else { return }
         self.authorLabel.text = validUserDisplayName
         
-        guard let validUserJob = article["user_job"] as? String else { return }
-        self.authorLabel.text! += ", " + validUserJob
+        guard let validUserJobTitle = article["user_job"].string else { return }
+        self.authorLabel.text! += ", " + validUserJobTitle
         
-        guard let validCreatedAt = article["created_at"] as? String else { return }
+        guard let validCreatedAt = article["created_at"].string else { return }
         self.timeLabel.text = timeAgoSinceDate(dateFromString(validCreatedAt, format: "yyyy-MM-dd'T'HH:mm:ssZ"), numericDates: true)
         
-        guard let validVoteCount = article["vote_count"] as? Int else { return }
+        guard let validVoteCount = article["vote_count"].int else { return }
         self.upvoteButton.setTitle("\(validVoteCount)", forState: UIControlState.Normal)
        
-        guard let validCommentCount = article["comment_count"] as? Int else { return }
+        guard let validCommentCount = article["comment_count"].int else { return }
         self.commentButton.setTitle("\(validCommentCount)", forState: .Normal)
         
         guard let validCommentTextView = self.commentTextView else { return }
-        guard let validComment = article["comment"] as? String else { return }
+        guard let validComment = article["comment"].string else { return }
         validCommentTextView.text = validComment
     }
 }
