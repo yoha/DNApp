@@ -14,6 +14,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     let data = Data()
     
+    let transitionManager = TransitionManager()
+    
     // MARK: - IBAction Methods
     
     @IBAction func menuButtonDidTouch(sender: UIBarButtonItem) {
@@ -24,20 +26,6 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.performSegueWithIdentifier("loginSegue", sender: self)
     }
     
-    // MARK: - UITableViewController Methods
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
-        
-        self.tableView.estimatedRowHeight = 100
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
     
     // MARK: - UITableViewDataSource Methods
     
@@ -57,17 +45,37 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     // MARK: - UITableViewDelegate Methods
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("webSegue", sender: self)
+        self.performSegueWithIdentifier("webSegue", sender: indexPath)
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     // MARK: - UIViewController Methods
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard segue.identifier == "commentsSegue" else { return }
-        guard let validDestinationContoller = segue.destinationViewController as? CommentsTableViewController else { return }
-        guard let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell) else { return }
-        validDestinationContoller.article = self.data.jsonData[indexPath.row]
+        if segue.identifier == "commentsSegue" {
+            guard let validDestinationContoller = segue.destinationViewController as? CommentsTableViewController else { return }
+            guard let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell) else { return }
+            validDestinationContoller.article = self.data.jsonData[indexPath.row]
+        }
+        if segue.identifier == "webSegue" {
+            guard let validDestinationViewController = segue.destinationViewController as? WebViewController else { return }
+            guard let indexPath = sender as? NSIndexPath else { return }
+            guard let validUrlString = self.data.jsonData[indexPath.row]["url"].string else { return }
+            validDestinationViewController.url = validUrlString
+
+            validDestinationViewController.transitioningDelegate = self.transitionManager
+            
+            UIApplication.sharedApplication().statusBarHidden = true
+        }
     }
     
     // MARK: - StoryTableViewCellDelegate Methods

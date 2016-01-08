@@ -20,6 +20,8 @@ class LearnViewController: UIViewController {
     @IBAction func learnButtonDidTouch(sender: UIButton) {
         self.bookIconImageView.animation = "pop"
         self.bookIconImageView.animate()
+        
+        self.openUrl("http://designcode.io")
     }
     
     @IBAction func closeButtonDidTouch(sender: UIButton) {
@@ -27,6 +29,10 @@ class LearnViewController: UIViewController {
         self.dialogView.animateNext {
             self.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    @IBAction func twitterButtonDidTouch(sender: UIButton) {
+        self.openUrl("http://twitter.com/mengto")
     }
     
     // MARK: - UIViewController Methods
@@ -41,5 +47,12 @@ class LearnViewController: UIViewController {
         self.dialogView.animation = "zoomIn"
         self.dialogView.autohide = true
         self.dialogView.animate()
+    }
+    
+    // MARK: - Local Methods
+    
+    func openUrl(url: String) {
+        guard let targetUrl = NSURL(string: url) else { return }
+        UIApplication.sharedApplication().openURL(targetUrl)
     }
 }

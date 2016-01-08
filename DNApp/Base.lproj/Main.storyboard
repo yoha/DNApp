@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D9c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ByY-CA-QtJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D13b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ByY-CA-QtJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -18,17 +18,17 @@
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
+            <string>AvenirNext-Regular</string>
+            <string>AvenirNext-Regular</string>
+            <string>AvenirNext-Regular</string>
+            <string>AvenirNext-Regular</string>
+            <string>AvenirNext-Regular</string>
             <string>AvenirNext-Medium</string>
             <string>AvenirNext-Medium</string>
             <string>AvenirNext-Medium</string>
             <string>AvenirNext-Medium</string>
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-DemiBold</string>
-            <string>AvenirNext-Regular</string>
-            <string>AvenirNext-Regular</string>
-            <string>AvenirNext-Regular</string>
-            <string>AvenirNext-Regular</string>
-            <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
@@ -161,14 +161,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Login" id="ORw-SH-jbb">
                             <connections>
-                                <action selector="loginButtonDidTouch:" destination="z2y-wC-dvo" id="PtL-l4-iNN"/>
+                                <action selector="loginButtonDidTouch:" destination="z2y-wC-dvo" id="Ct3-il-YuM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="dw6-KR-CNG" kind="presentation" identifier="loginSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="yTx-Uz-wmw"/>
                         <segue destination="EVO-hD-p0f" kind="presentation" identifier="menuSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="nAO-vB-vnh"/>
-                        <segue destination="367-IB-O5F" kind="presentation" identifier="webSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="V0l-sy-HA5"/>
+                        <segue destination="367-IB-O5F" kind="presentation" identifier="webSegue" modalTransitionStyle="coverVertical" id="V0l-sy-HA5"/>
                         <segue destination="WdE-9M-lsy" kind="show" identifier="commentsSegue" id="DSN-XQ-Kzw"/>
                     </connections>
                 </tableViewController>
@@ -232,6 +232,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="cWk-SI-3Af">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="2"/>
+                                <color key="progressTintColor" red="0.29411764709999999" green="0.4941176471" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -239,14 +243,21 @@
                             <constraint firstItem="WgI-sG-d5h" firstAttribute="leading" secondItem="Mn1-hu-IYq" secondAttribute="leading" id="DN5-Bg-DTJ"/>
                             <constraint firstItem="VOU-7r-JHe" firstAttribute="leading" secondItem="DGZ-Sa-3AC" secondAttribute="trailing" constant="20" id="Dns-X8-tRs"/>
                             <constraint firstItem="VOU-7r-JHe" firstAttribute="centerY" secondItem="DGZ-Sa-3AC" secondAttribute="centerY" id="LEi-Dq-f8b"/>
+                            <constraint firstItem="cWk-SI-3Af" firstAttribute="leading" secondItem="Mn1-hu-IYq" secondAttribute="leading" id="TO8-0n-fli"/>
                             <constraint firstItem="VOU-7r-JHe" firstAttribute="height" secondItem="DGZ-Sa-3AC" secondAttribute="height" id="dtE-Ki-bff"/>
                             <constraint firstItem="or1-OK-I9q" firstAttribute="top" secondItem="DGZ-Sa-3AC" secondAttribute="bottom" constant="20" id="g4A-KH-ixb"/>
                             <constraint firstItem="WgI-sG-d5h" firstAttribute="top" secondItem="Mn1-hu-IYq" secondAttribute="top" id="hQm-3f-T3d"/>
                             <constraint firstAttribute="trailing" secondItem="WgI-sG-d5h" secondAttribute="trailing" id="kRc-BP-mnw"/>
+                            <constraint firstItem="cWk-SI-3Af" firstAttribute="top" secondItem="Mn1-hu-IYq" secondAttribute="top" id="mUf-0H-DiW"/>
                             <constraint firstItem="VOU-7r-JHe" firstAttribute="width" secondItem="DGZ-Sa-3AC" secondAttribute="width" id="ueQ-jQ-cVQ"/>
                             <constraint firstItem="DGZ-Sa-3AC" firstAttribute="leading" secondItem="Mn1-hu-IYq" secondAttribute="leading" constant="20" id="ujI-cO-SM7"/>
+                            <constraint firstAttribute="trailing" secondItem="cWk-SI-3Af" secondAttribute="trailing" id="z0i-uD-U1T"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="progressBarView" destination="cWk-SI-3Af" id="aFU-Q6-am6"/>
+                        <outlet property="webView" destination="WgI-sG-d5h" id="YUn-hK-v3R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="awf-b1-8J1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -556,6 +567,9 @@
                                         <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="-5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="@MengTo" image="icon-twitter"/>
+                                        <connections>
+                                            <action selector="twitterButtonDidTouch:" destination="X1w-m0-HtC" eventType="touchUpInside" id="Fts-31-4kF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1960784314" green="0.23529411759999999" blue="0.28235294119999998" alpha="1" colorSpace="calibratedRGB"/>
