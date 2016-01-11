@@ -8,11 +8,17 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     
-    // MARK: - IBOutlet & IBAction Properties
+    // MARK: - IBOutletProperties
     
     @IBOutlet var dialogView: DesignableView!
+    @IBOutlet weak var emailIconImageView: SpringImageView!
+    @IBOutlet weak var passwordIconImageView: SpringImageView!
+    @IBOutlet weak var emailTextField: DesignableTextField!
+    @IBOutlet weak var passwordTextField: DesignableTextField!
+    
+    // MARK: - IBAction Properties
     
     @IBAction func loginButtonDidTouch(sender: UIButton) {
         self.dialogView.animation = "shake"
@@ -23,5 +29,44 @@ class LoginViewController: UIViewController {
         self.dialogView.animation = "zoomOut"
         self.dialogView.animate()
     }
-
+    
+    // MARK: - UIResponder Methods
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // MARK: - UIViewController Methods
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+    }
+    
+    // MARK: - UITextFieldDelegate Methods
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField == self.emailTextField {
+            self.emailIconImageView.image = UIImage(named: "icon-mail-active")
+            self.emailIconImageView.animate()
+        }
+        else {
+            self.emailIconImageView.image = UIImage(named: "icon-mail")
+        }
+        
+        if textField == self.passwordTextField {
+            self.passwordIconImageView.image = UIImage(named: "icon-password-active")
+            self.passwordIconImageView.animate()
+        }
+        else {
+            self.passwordIconImageView.image = UIImage(named: "icon-password")
+        }
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        self.emailIconImageView.image = UIImage(named: "icon-mail")
+        self.passwordIconImageView.image = UIImage(named: "icon-password")
+    }
 }
