@@ -12,7 +12,7 @@ class CommentTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlet Properties
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: AsyncImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var upvoteButton: SpringButton!
@@ -32,14 +32,16 @@ class CommentTableViewCell: UITableViewCell {
     // MARK: - Local Methods
     
     func configureCellWithComment(comment: JSON) {
-        guard let _ = comment["user_portrait_url"].string else { return }
-        self.avatarImageView.image = UIImage(named: "content-avatar-default")
+        guard let validAvatar = comment["user_portrait_url"].string else { return }
+        guard let validAvatarUrl = validAvatar.toURL() else { return }
+        self.avatarImageView.url = validAvatarUrl
+        self.avatarImageView.placeholderImage = UIImage(named: "content-avatar-default")
         
-        guard let validUserDisplayName = comment["user_display_name"].string else { return }
-        self.authorLabel.text = validUserDisplayName
+        let userDisplayName = comment["user_display_name"].string ?? ""
+        self.authorLabel.text = userDisplayName
         
-        guard let validUserJobTitle = comment["user_job"].string else { return }
-        self.authorLabel.text! += "," +  "\(validUserJobTitle)"
+        let jobTitle = comment["user_job"].string ?? ""
+        self.authorLabel.text = userDisplayName + "," +  "\(jobTitle)"
         
         guard let validVoteCount = comment["vote_count"].int else { return }
         self.upvoteButton.setTitle("\(validVoteCount)", forState: UIControlState.Normal)

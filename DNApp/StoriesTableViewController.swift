@@ -16,6 +16,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     let transitionManager = TransitionManager()
     
+    var articles: JSON = []
+    
     // MARK: - IBAction Methods
     
     @IBAction func menuButtonDidTouch(sender: UIBarButtonItem) {
@@ -30,12 +32,14 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     // MARK: - UITableViewDataSource Methods
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.data.jsonData.count
+//        return self.data.jsonData.count
+        return self.articles.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("StoryCell", forIndexPath: indexPath) as! StoryTableViewCell
-        let article = self.data.jsonData[indexPath.row]
+        let article = self.articles[indexPath.row]
+//        let article = self.data.jsonData[indexPath.row]
         cell.configureCellWithArticle(article)
         cell.delegate = self
         
@@ -58,18 +62,22 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         
         self.tableView.estimatedRowHeight = 100
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.loadArticlesInSection("", page: 1)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "commentsSegue" {
             guard let validDestinationContoller = segue.destinationViewController as? CommentsTableViewController else { return }
             guard let indexPath = self.tableView.indexPathForCell(sender as! UITableViewCell) else { return }
-            validDestinationContoller.article = self.data.jsonData[indexPath.row]
+//            validDestinationContoller.article = self.data.jsonData[indexPath.row]
+            validDestinationContoller.article = self.articles[indexPath.row]
         }
         if segue.identifier == "webSegue" {
             guard let validDestinationViewController = segue.destinationViewController as? WebViewController else { return }
             guard let indexPath = sender as? NSIndexPath else { return }
-            guard let validUrlString = self.data.jsonData[indexPath.row]["url"].string else { return }
+//            guard let validUrlString = self.data.jsonData[indexPath.row]["url"].string else { return }
+            guard let validUrlString = self.articles[indexPath.row]["url"].string else { return }
             validDestinationViewController.url = validUrlString
 
             validDestinationViewController.transitioningDelegate = self.transitionManager
@@ -86,5 +94,14 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     func StoryTableViewCellDelegateCommentButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject) {
         self.performSegueWithIdentifier("commentsSegue", sender: cell)
+    }
+    
+    // MARK: - Local Methods
+    
+    func loadArticlesInSection(section: String, page: Int) {
+        DNService.getStoriesForSection(section, page: page) { [unowned self] (response: JSON) -> () in
+            self.articles = response["stories"]
+            self.tableView.reloadData()
+        }
     }
 }
