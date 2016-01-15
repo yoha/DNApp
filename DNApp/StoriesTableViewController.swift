@@ -20,6 +20,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     var isFirstTimeLoading = true
     
+    var articleSection = ""
+    
     // MARK: - IBAction Methods
     
     @IBAction func menuButtonDidTouch(sender: UIBarButtonItem) {
@@ -64,6 +66,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.loadArticlesInSection("", page: 1)
+        
+        refreshControl?.addTarget(self, action: "refreshStories", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -101,13 +105,15 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     func menuViewControllerTopStoriesButtonDidTouch() {
         self.view.showLoading()
-        self.loadArticlesInSection("", page: 1)
+        self.articleSection = ""
+        self.loadArticlesInSection(self.articleSection, page: 1)
         self.title = "Top Stories"
     }
     
     func menuViewcontrollerRecentStoriesButtonDidTouch() {
         self.view.showLoading()
-        self.loadArticlesInSection("recent", page: 1)
+        self.articleSection = "recent"
+        self.loadArticlesInSection(self.articleSection, page: 1)
         self.navigationItem.title = "Recent Stories"
     }
     
@@ -126,9 +132,16 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     func loadArticlesInSection(section: String, page: Int) {
         DNService.getStoriesForSection(section, page: page) { [unowned self] (response: JSON) -> () in
             self.articles = response["stories"]
+            
             self.tableView.reloadData()
             
             self.view.hideLoading()
+            
+            self.refreshControl?.endRefreshing()
         }
+    }
+    
+    func refreshStories() {
+        self.loadArticlesInSection(self.articleSection, page: 1)
     }
 }
