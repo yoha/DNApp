@@ -34,8 +34,7 @@ class CommentTableViewCell: UITableViewCell {
     func configureCellWithComment(comment: JSON) {
         guard let validAvatar = comment["user_portrait_url"].string else { return }
         guard let validAvatarUrl = validAvatar.toURL() else { return }
-        self.avatarImageView.url = validAvatarUrl
-        self.avatarImageView.placeholderImage = UIImage(named: "content-avatar-default")
+        self.avatarImageView.setURL(validAvatarUrl, placeholderImage: UIImage(named: "content-avatar-default"))
         
         let userDisplayName = comment["user_display_name"].string ?? ""
         self.authorLabel.text = userDisplayName

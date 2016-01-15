@@ -57,7 +57,7 @@ class StoryTableViewCell: UITableViewCell {
         self.badgeImageView.image = UIImage(named: "badge-" + badge )
 
         guard let validAvatar = article["user_portrait_url"].string else { return }
-        guard let validAvatarUrl = validAvatar.toURL() else { return }
+        guard let validAvatarUrl = NSURL(string: validAvatar) else { return }
         self.avatarImageView.setURL(validAvatarUrl, placeholderImage: UIImage(named: "content-avatar-default"))
         
         let userDisplayName = article["user_display_name"].string ?? ""
