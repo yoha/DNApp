@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol MenuviewControllerDelegate: NSObjectProtocol {
+    func menuViewControllerTopStoriesButtonDidTouch()
+    func menuViewcontrollerRecentStoriesButtonDidTouch()
+}
+
 class MenuViewController: UIViewController {
+    
+    // MARK: - Stored Properties
+    
+    weak var delegate: MenuviewControllerDelegate?
     
     // MARK: - IBOutlet Properties
     
@@ -20,5 +29,19 @@ class MenuViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
         self.dialogView.animation = "fall"
         self.dialogView.animate()
+    }
+    
+    @IBAction func topStoriesButtonDidTouch(sender: UIButton) {
+        self.delegate?.menuViewControllerTopStoriesButtonDidTouch()
+        self.closeButtonDidTouch(sender)
+    }
+    
+    @IBAction func recentStoriesButtonDidTouch(sender: UIButton) {
+        self.delegate?.menuViewcontrollerRecentStoriesButtonDidTouch()
+        self.closeButtonDidTouch(sender)
+    }
+    
+    @IBAction func loginButtonDidTouch(sender: UIButton) {
+        
     }
 }

@@ -8,9 +8,10 @@
 
 import UIKit
 
-protocol StoryTableViewCellDelegate: class {
-    func StoryTableViewCellDelegateUpvoteButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject)
-    func StoryTableViewCellDelegateCommentButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject)
+protocol StoryTableViewCellDelegate: NSObjectProtocol {
+    
+    func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell)
+    func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell)
 }
 
 class StoryTableViewCell: UITableViewCell {
@@ -39,11 +40,11 @@ class StoryTableViewCell: UITableViewCell {
         sender.force = 3.0
         sender.animate()
         
-        self.delegate?.StoryTableViewCellDelegateUpvoteButtonDidTouch(self, sender: sender)
+        self.delegate?.StoryTableViewCellUpvoteButtonDidTouch(self)
     }
     
     @IBAction func commentButtonDidTouch(sender: SpringButton) {
-        self.delegate?.StoryTableViewCellDelegateCommentButtonDidTouch(self, sender: sender)
+        self.delegate?.StoryTableViewCellCommentButtonDidTouch(self)
     }
     
     // MARK: - Local Methods

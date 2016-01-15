@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate {
+class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate, MenuviewControllerDelegate {
     
     // MARK: - Stored Properties
     
@@ -91,15 +91,33 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
             
             UIApplication.sharedApplication().statusBarHidden = true
         }
+        if segue.identifier == "menuSegue" {
+            guard let validDestinationController = segue.destinationViewController as? MenuViewController else { return }
+            validDestinationController.delegate = self
+        }
+    }
+    
+    // MARK: - MenuViewControllerDelegate Methods
+    
+    func menuViewControllerTopStoriesButtonDidTouch() {
+        self.view.showLoading()
+        self.loadArticlesInSection("", page: 1)
+        self.title = "Top Stories"
+    }
+    
+    func menuViewcontrollerRecentStoriesButtonDidTouch() {
+        self.view.showLoading()
+        self.loadArticlesInSection("recent", page: 1)
+        self.navigationItem.title = "Recent Stories"
     }
     
     // MARK: - StoryTableViewCellDelegate Methods
     
-    func StoryTableViewCellDelegateUpvoteButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject) {
+    func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell) {
         // TODO: - implement upvote
     }
     
-    func StoryTableViewCellDelegateCommentButtonDidTouch(cell: StoryTableViewCell, sender: AnyObject) {
+    func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {
         self.performSegueWithIdentifier("commentsSegue", sender: cell)
     }
     

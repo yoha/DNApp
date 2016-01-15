@@ -663,6 +663,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
                                         <state key="normal" image="big-top"/>
+                                        <connections>
+                                            <action selector="topStoriesButtonDidTouch:" destination="EVO-hD-p0f" eventType="touchUpInside" id="dkJ-WY-lRR"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Top Stories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bYL-Sh-5sU">
                                         <rect key="frame" x="29" y="88" width="82" height="22"/>
@@ -675,6 +678,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
                                         <state key="normal" image="big-recent"/>
+                                        <connections>
+                                            <action selector="recentStoriesButtonDidTouch:" destination="EVO-hD-p0f" eventType="touchUpInside" id="Vwa-rN-JNt"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7j-7f-q2g">
                                         <rect key="frame" x="185" y="88" width="51" height="22"/>
@@ -687,6 +693,9 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="23"/>
                                         <state key="normal" image="big-login"/>
+                                        <connections>
+                                            <action selector="loginButtonDidTouch:" destination="EVO-hD-p0f" eventType="touchUpInside" id="h5f-ei-TRa"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CdQ-Zk-v1X">
                                         <rect key="frame" x="189" y="228" width="42" height="22"/>
