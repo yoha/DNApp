@@ -18,6 +18,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     var articles: JSON = []
     
+    var isFirstTimeLoading = true
+    
     // MARK: - IBAction Methods
     
     @IBAction func menuButtonDidTouch(sender: UIBarButtonItem) {
@@ -67,7 +69,10 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         
-        self.view.showLoading()
+        if self.isFirstTimeLoading {
+            self.view.showLoading()
+            self.isFirstTimeLoading = false
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
