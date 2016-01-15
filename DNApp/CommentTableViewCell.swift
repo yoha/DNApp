@@ -32,9 +32,9 @@ class CommentTableViewCell: UITableViewCell {
     // MARK: - Local Methods
     
     func configureCellWithComment(comment: JSON) {
-        guard let validAvatar = comment["user_portrait_url"].string else { return }
-        guard let validAvatarUrl = validAvatar.toURL() else { return }
-        self.avatarImageView.setURL(validAvatarUrl, placeholderImage: UIImage(named: "content-avatar-default"))
+        let avatar = comment["user_portrait_url"].string
+        let avatarUrl = avatar?.toURL()
+        self.avatarImageView.setURL(avatarUrl, placeholderImage: UIImage(named: "content-avatar-default"))
         
         let userDisplayName = comment["user_display_name"].string ?? ""
         self.authorLabel.text = userDisplayName
@@ -48,8 +48,11 @@ class CommentTableViewCell: UITableViewCell {
         guard let validCreatedAt = comment["created_at"].string else { return }
         self.timeLabel.text = timeAgoSinceDate(dateFromString(validCreatedAt, format: "yyyy-MM-dd'T'HH:mm:ssZ"), numericDates: true)
     
+        guard let validCommentTextView = self.commentTextView else { return }
         guard let validComment = comment["body"].string else { return }
-        self.commentTextView.text = validComment
+        validCommentTextView.text = validComment
+        let bodyHTML = comment["body_html"].string ?? ""
+        validCommentTextView.attributedText = htmlToAttributedString(bodyHTML + "<style>*{font-family:\"Avenir Next\";font-size:16px;line-height:20px}img{max-width:300px}</style>")
     }
     
 }

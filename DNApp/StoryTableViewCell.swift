@@ -57,9 +57,9 @@ class StoryTableViewCell: UITableViewCell {
         let badge = article["badge"].string ?? ""
         self.badgeImageView.image = UIImage(named: "badge-" + badge )
 
-        guard let validAvatar = article["user_portrait_url"].string else { return }
-        guard let validAvatarUrl = NSURL(string: validAvatar) else { return }
-        self.avatarImageView.setURL(validAvatarUrl, placeholderImage: UIImage(named: "content-avatar-default"))
+        let avatar = article["user_portrait_url"].string
+        let avatarUrl = avatar?.toURL()
+        self.avatarImageView.setURL(avatarUrl, placeholderImage: UIImage(named: "content-avatar-default"))
         
         let userDisplayName = article["user_display_name"].string ?? ""
         self.authorLabel.text = userDisplayName
@@ -79,5 +79,7 @@ class StoryTableViewCell: UITableViewCell {
         guard let validCommentTextView = self.commentTextView else { return }
         guard let validComment = article["comment"].string else { return }
         validCommentTextView.text = validComment
+        let commentHTML = article["comment_html"].string ?? ""
+        validCommentTextView.attributedText = htmlToAttributedString(commentHTML + "<style>*{font-family:\"Avenir Next\";font-size:16px;line-height:20px}img{max-width:300px}</style>")
     }
 }
