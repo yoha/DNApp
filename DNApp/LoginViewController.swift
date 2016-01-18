@@ -21,9 +21,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     // MARK: - IBAction Properties
     
     @IBAction func loginButtonDidTouch(sender: UIButton) {
-        self.dialogView.animation = "shake"
-        self.dialogView.animate()
+        guard let validTextFieldEntryForEmail = self.emailTextField.text else { return }
+        guard let validTextFieldEntryForPassword = self.passwordTextField.text else { return }
+        
+        guard validTextFieldEntryForEmail.characters.contains("@") && validTextFieldEntryForEmail.characters.contains(".") else {
+            self.dialogView.animation = "shake"
+            self.dialogView.animate()
+            return
+        }
+        DNService.loginWithEmail(validTextFieldEntryForEmail, password: validTextFieldEntryForPassword) { (token) -> () in
+            guard let validToken = token else {
+                self.dialogView.animation = "shake"
+                self.dialogView.animate()
+                return
+            }
+            print(validToken)
+        }
     }
+    
     @IBAction func closeButtonDidTouch(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
         self.dialogView.animation = "zoomOut"

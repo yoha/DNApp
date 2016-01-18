@@ -62,7 +62,7 @@ struct DNService {
         }
     }
     
-    static func loginWithEmail(email: String, password: String, responseAsClosure: (token: String) -> ()) {
+    static func loginWithEmail(email: String, password: String, responseAsClosure: (token: String?) -> ()) {
         let urlStringToAPI = self.baseURL + self.ResourcePath.Login.description
         let loginParameters = [
             "grant_type": "password",
