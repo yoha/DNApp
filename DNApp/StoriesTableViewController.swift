@@ -22,6 +22,10 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     var articleSection = ""
     
+    // MARK: - IBOutlet Properties
+    
+    @IBOutlet weak var loginButton: UIBarButtonItem!
+    
     // MARK: - IBAction Methods
     
     @IBAction func menuButtonDidTouch(sender: UIBarButtonItem) {
@@ -151,6 +155,9 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
             
             self.refreshControl?.endRefreshing()
         }
+        
+        self.loginButton.title = LocalDefaults.loadToken() == nil ? "Login" : ""
+        self.loginButton.enabled = LocalDefaults.loadToken() == nil ? true : false
     }
     
     func refreshStories() {

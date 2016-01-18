@@ -169,6 +169,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
+                        <outlet property="loginButton" destination="ORw-SH-jbb" id="c0j-gb-lGE"/>
                         <segue destination="dw6-KR-CNG" kind="presentation" identifier="loginSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="yTx-Uz-wmw"/>
                         <segue destination="EVO-hD-p0f" kind="presentation" identifier="menuSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="nAO-vB-vnh"/>
                         <segue destination="367-IB-O5F" kind="presentation" identifier="webSegue" modalTransitionStyle="coverVertical" id="V0l-sy-HA5"/>
