@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate, MenuviewControllerDelegate {
+class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate, MenuviewControllerDelegate, LoginViewControllerDelegate {
     
     // MARK: - Stored Properties
     
@@ -99,6 +99,18 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
             guard let validDestinationController = segue.destinationViewController as? MenuViewController else { return }
             validDestinationController.delegate = self
         }
+        
+        if segue.identifier == "loginSegue" {
+            guard let validDestinationController = segue.destinationViewController as? LoginViewController else { return }
+            validDestinationController.delegate = self
+        }
+    }
+    
+    // MARK: - LoginViewControllerDelegate Methods
+    
+    func loginViewControllerDidLogin(controller: LoginViewController) {
+        self.refreshStories()
+        self.view.showLoading()
     }
     
     // MARK: - MenuViewControllerDelegate Methods

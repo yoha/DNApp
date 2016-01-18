@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate: NSObjectProtocol {
+    func loginViewControllerDidLogin(controller: LoginViewController)
+}
+
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
+    // MARK: - Stored Properties
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     // MARK: - IBOutletProperties
     
@@ -36,6 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             LocalDefaults.saveToken(validToken)
+            self.delegate?.loginViewControllerDidLogin(self)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
