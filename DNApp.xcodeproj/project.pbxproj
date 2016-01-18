@@ -325,6 +325,7 @@
 				65C39C1D1C2A9FC9006C18CE /* Frameworks */,
 				65C39C1E1C2A9FC9006C18CE /* Resources */,
 				65D1126A1C46167000F4A0C8 /* Embed Frameworks */,
+				6525D3511C4C9C6900F8F8E4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -442,6 +443,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6525D3511C4C9C6900F8F8E4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		65C39C1C1C2A9FC9006C18CE /* Sources */ = {

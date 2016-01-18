@@ -61,4 +61,31 @@ struct DNService {
             responseInJSON(stories)
         }
     }
+    
+    static func loginWithEmail(email: String, password: String, responseAsClosure: (token: String) -> ()) {
+        let urlStringToAPI = self.baseURL + self.ResourcePath.Login.description
+        let loginParameters = [
+            "grant_type": "password",
+            "username": email,
+            "password": password,
+            "client_id": self.clientID,
+            "client_secret": self.clientSecret
+        ]
+        
+        Alamofire.request(.POST, urlStringToAPI, parameters: loginParameters).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
+            // let json = JSON(data!)
+            // let token = json["access_token"].string
+            // response(token: token)
+            //
+            // let stories = JSON(data ?? [])
+            // response(stories)
+            guard let validDataFromResponse = response.data else { return }
+            let jsonData = JSON(validDataFromResponse)
+            guard let validAccessToken = jsonData["access_token"].string else {
+                print("no acccess token received")
+                return
+            }
+            responseAsClosure(token: validAccessToken)
+        }
+    }
 }
