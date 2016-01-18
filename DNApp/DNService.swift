@@ -80,8 +80,8 @@ struct DNService {
             // let stories = JSON(data ?? [])
             // response(stories)
             guard let validDataFromResponse = response.data else { return }
-            let jsonData = JSON(validDataFromResponse)
-            guard let validAccessToken = jsonData["access_token"].string else {
+            let dataAsSwiftyJSON = JSON(validDataFromResponse)
+            guard let validAccessToken = dataAsSwiftyJSON["access_token"].string else {
                 print("no acccess token received")
                 return
             }

@@ -35,7 +35,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 self.dialogView.animate()
                 return
             }
-            print(validToken)
+            LocalDefaults.saveToken(validToken)
+            self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
     
