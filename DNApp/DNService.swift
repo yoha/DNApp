@@ -88,4 +88,27 @@ struct DNService {
             responseAsClosure(token: validAccessToken)
         }
     }
+    
+    static func upvoteStoryWithID(storyID: Int, token: String, responseAsClosure: (successful: Bool) -> ()) {
+        let urlStringToAPI = self.baseURL + self.ResourcePath.StoryUpvote(storyID: storyID).description
+        self.upVoteWithURLStringToAPI(urlStringToAPI, token: token, responseAsClosure: responseAsClosure)
+    }
+    
+    static func upvoteCommentWithID(commentID: Int, token: String, responseAsClosure: (successful: Bool) -> ()) {
+        let urlStringToAPI = self.baseURL + self.ResourcePath.CommentUpvote(commentID: commentID).description
+        self.upVoteWithURLStringToAPI(urlStringToAPI, token: token, responseAsClosure: responseAsClosure)
+    }
+    
+    private static func upVoteWithURLStringToAPI(urlStringToAPI: String, token: String, responseAsClosure: (successful: Bool) -> ()) {
+        guard let validUrlFromAPI = NSURL(string: urlStringToAPI) else { return }
+        let urlRequest = NSMutableURLRequest(URL: validUrlFromAPI)
+        urlRequest.HTTPMethod = "POST"
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
+        Alamofire.request(urlRequest).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
+            guard let validURLResponse = response.response else { return }
+            let successfulResponse = validURLResponse.statusCode == 200
+            responseAsClosure(successful: successfulResponse)
+        }
+    }
 }

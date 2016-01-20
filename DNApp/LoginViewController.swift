@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.dialogView.animate()
             return
         }
-        DNService.loginWithEmail(validTextFieldEntryForEmail, password: validTextFieldEntryForPassword) { (token) -> () in
+        DNService.loginWithEmail(validTextFieldEntryForEmail, password: validTextFieldEntryForPassword) { [unowned self] (token) -> () in
             guard let validToken = token else {
                 self.dialogView.animation = "shake"
                 self.dialogView.animate()
