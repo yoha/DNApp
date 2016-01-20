@@ -11,6 +11,7 @@ import UIKit
 protocol MenuviewControllerDelegate: NSObjectProtocol {
     func menuViewControllerTopStoriesButtonDidTouch()
     func menuViewcontrollerRecentStoriesButtonDidTouch()
+    func menuViewControllerLoginButtonDidTouch()
 }
 
 class MenuViewController: UIViewController {
@@ -22,6 +23,7 @@ class MenuViewController: UIViewController {
     // MARK: - IBOutlet Properties
     
     @IBOutlet var dialogView: DesignableView!
+    @IBOutlet weak var loginLabel: UILabel!
     
     // MARK: - IBAction Properties
     
@@ -42,6 +44,19 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func loginButtonDidTouch(sender: UIButton) {
-        
+        if LocalDefaults.loadToken() != nil {
+            LocalDefaults.deleteToken()
+            self.closeButtonDidTouch(sender)
+            self.delegate?.menuViewControllerLoginButtonDidTouch()
+        }
+        else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+        }
+    }
+    
+    // MARK: - UIViewController Methods
+    
+    override func viewDidLoad() {
+        self.loginLabel.text = LocalDefaults.loadToken() != nil ? "Logout" : "Login"
     }
 }

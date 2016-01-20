@@ -113,8 +113,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     // MARK: - LoginViewControllerDelegate Methods
     
     func loginViewControllerDidLogin(controller: LoginViewController) {
-        self.refreshStories()
         self.view.showLoading()
+        self.refreshStories()
     }
     
     // MARK: - MenuViewControllerDelegate Methods
@@ -131,6 +131,11 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.articleSection = "recent"
         self.loadArticlesInSection(self.articleSection, page: 1)
         self.navigationItem.title = "Recent Stories"
+    }
+    
+    func menuViewControllerLoginButtonDidTouch() {
+        self.view.showLoading()
+        self.loadArticlesInSection(self.articleSection, page: 1)    
     }
     
     // MARK: - StoryTableViewCellDelegate Methods
