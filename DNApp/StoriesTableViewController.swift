@@ -141,7 +141,22 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     // MARK: - StoryTableViewCellDelegate Methods
     
     func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell) {
-        // TODO: - implement upvote
+        guard let validToken = LocalDefaults.loadToken() else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            return
+        }
+        guard let validCellIndexPath = self.tableView.indexPathForCell(cell) else { return }
+        let article = self.articles[validCellIndexPath.row]
+        guard let validArticleID = article["id"].int else { return }
+        
+        cell.upvoteButton.setImage(UIImage(named: "icon-upvote-active"), forState: UIControlState.Normal)
+        guard let validVoteCount = article["vote_count"].int else { return }
+        cell.upvoteButton.setTitle(String(validVoteCount + 1), forState: .Normal)
+        
+        DNService.upvoteStoryWithID(validArticleID, token: validToken) { (successful) -> () in
+            // Do something
+        }
+        
     }
     
     func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {
