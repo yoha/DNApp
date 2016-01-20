@@ -149,14 +149,13 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         let article = self.articles[validCellIndexPath.row]
         guard let validArticleID = article["id"].int else { return }
         
-        cell.upvoteButton.setImage(UIImage(named: "icon-upvote-active"), forState: UIControlState.Normal)
-        guard let validVoteCount = article["vote_count"].int else { return }
-        cell.upvoteButton.setTitle(String(validVoteCount + 1), forState: .Normal)
-        
         DNService.upvoteStoryWithID(validArticleID, token: validToken) { (successful) -> () in
             // Do something
         }
         
+        LocalDefaults.saveUpvotedStory(validArticleID)
+        
+        cell.configureCellWithArticle(article)
     }
     
     func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {

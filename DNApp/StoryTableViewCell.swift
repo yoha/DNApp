@@ -81,5 +81,15 @@ class StoryTableViewCell: UITableViewCell {
         validCommentTextView.text = validComment
         let commentHTML = article["comment_html"].string ?? ""
         validCommentTextView.attributedText = htmlToAttributedString(commentHTML + "<style>*{font-family:\"Avenir Next\";font-size:16px;line-height:20px}img{max-width:300px}</style>")
+        
+        guard let validArticleID = article["id"].int else { return }
+        if LocalDefaults.isStoryUpvoted(validArticleID) {
+            self.upvoteButton.setImage(UIImage(named: "icon-upvote-active"), forState: UIControlState.Normal)
+            self.upvoteButton.setTitle(String(validVoteCount + 1), forState: .Normal)
+        }
+        else {
+            self.upvoteButton.setImage(UIImage(named: "icon-upvote"), forState: .Normal)
+            self.upvoteButton.setTitle(String(validVoteCount), forState: .Normal)
+        }
     }
 }
