@@ -490,6 +490,7 @@
                     </tableView>
                     <connections>
                         <segue destination="yvb-gM-2TP" kind="presentation" identifier="replyCommentSegue" id="BrJ-Mm-aOR"/>
+                        <segue destination="dw6-KR-CNG" kind="presentation" identifier="LoginSegue" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="A5b-Pr-XyD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UU6-EQ-XxN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -983,6 +984,6 @@
         <image name="input-outline" width="7" height="44"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ryF-GV-hQ1"/>
+        <segue reference="A5b-Pr-XyD"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -62,6 +62,16 @@ class CommentTableViewCell: UITableViewCell {
         validCommentTextView.text = validComment
         let bodyHTML = comment["body_html"].string ?? ""
         validCommentTextView.attributedText = htmlToAttributedString(bodyHTML + "<style>*{font-family:\"Avenir Next\";font-size:16px;line-height:20px}img{max-width:300px}</style>")
+        
+        guard let validCommentID = comment["id"].int else { return }
+        if LocalDefaults.isCommentUpvoted(validCommentID) {
+            self.upvoteButton.setImage(UIImage(named: "icon-upvote-active"), forState: .Normal)
+            self.upvoteButton.setTitle(String(validVoteCount + 1), forState: .Normal)
+        }
+        else {
+            self.upvoteButton.setImage(UIImage(named: "icon-upvote"), forState: .Normal)
+            self.upvoteButton.setTitle(String(validVoteCount), forState: .Normal)
+        }
     }
     
 }

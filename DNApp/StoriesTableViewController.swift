@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate, MenuViewControllerDelegate, LoginViewControllerDelegate {
+class StoriesTableViewController: UITableViewController, StoryTableViewCellDelegate, LoginViewControllerDelegate, MenuViewControllerDelegate {
     
     // MARK: - Stored Properties
     
@@ -119,30 +119,30 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     // MARK: - MenuViewControllerDelegate Methods
     
-    func menuViewControllerTopStoriesButtonDidTouch() {
+    func menuViewControllerTopStoriesButtonDidTouch(viewController: MenuViewController) {
         self.view.showLoading()
         self.articleSection = ""
         self.loadArticlesInSection(self.articleSection, page: 1)
         self.title = "Top Stories"
     }
     
-    func menuViewcontrollerRecentStoriesButtonDidTouch() {
+    func menuViewcontrollerRecentStoriesButtonDidTouch(viewController: MenuViewController) {
         self.view.showLoading()
         self.articleSection = "recent"
         self.loadArticlesInSection(self.articleSection, page: 1)
         self.navigationItem.title = "Recent Stories"
     }
     
-    func menuViewControllerLoginButtonDidTouch() {
+    func menuViewControllerLoginButtonDidTouch(viewController: MenuViewController) {
         self.view.showLoading()
-        self.loadArticlesInSection(self.articleSection, page: 1)    
+        self.loadArticlesInSection(self.articleSection, page: 1)
     }
     
     // MARK: - StoryTableViewCellDelegate Methods
     
     func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell) {
         guard let validToken = LocalDefaults.loadToken() else {
-            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            self.performSegueWithIdentifier("loginSegue", sender: self)
             return
         }
         guard let validCellIndexPath = self.tableView.indexPathForCell(cell) else { return }

@@ -35,10 +35,6 @@ class StoryTableViewCell: UITableViewCell {
     // MARK: - IBAction Properties
     
     @IBAction func upvoteButtonDidTouch(sender: SpringButton) {
-        sender.animation = "swing"
-        sender.force = 3.0
-        sender.animate()
-        
         self.delegate?.StoryTableViewCellUpvoteButtonDidTouch(self)
     }
     

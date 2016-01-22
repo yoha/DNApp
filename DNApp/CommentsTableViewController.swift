@@ -52,20 +52,44 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     // MARK: - CommentTableViewCellDelegate Methods
     
     func commentTableViewCellUpvoteButtonDidTouch(cell: CommentTableViewCell) {
+        guard let validToken = LocalDefaults.loadToken() else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            return
+        }
+        guard let validIndexPath = self.tableView.indexPathForCell(cell) else { return }
+        let comment = self.comments[validIndexPath.row - 1]
+        guard let validCommentID = comment["id"].int else { return }
         
+        DNService.upvoteCommentWithID(validCommentID, token: validToken) { (successful) -> () in
+            // Optionally do something here
+        }
+        
+        LocalDefaults.saveUpvotedComment(validCommentID)
+        cell.configureCellWithComment(comment)
     }
     
     func commentTableViewCellCommentButtonDidTouch(cell: CommentTableViewCell) {
-        <#code#>
+    
     }
     
     // MARK: - StoryTableViewCellDelegate
     
     func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell) {
-        <#code#>
+        guard let validToken = LocalDefaults.loadToken() else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            return
+        }
+        guard let validArticleID = self.article["id"].int else { return }
+        
+        DNService.upvoteStoryWithID(validArticleID, token: validToken) { (successful) -> () in
+            // Optionally do something here
+        }
+        
+        LocalDefaults.saveUpvotedStory(validArticleID)
+        cell.configureCellWithArticle(self.article)
     }
     
     func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {
-        <#code#>
+        
     }
 }
