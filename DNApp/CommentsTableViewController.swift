@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentsTableViewController: UITableViewController {
+class CommentsTableViewController: UITableViewController, CommentTableViewCellDelegate, StoryTableViewCellDelegate {
     
     // MARK - Stored Properties
     
@@ -27,10 +27,12 @@ class CommentsTableViewController: UITableViewController {
         let cell = self.tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) 
         if let storyCell = cell as? StoryTableViewCell {
             storyCell.configureCellWithArticle(self.article)
+            storyCell.delegate = self
         }
         else if let commentCell = cell as? CommentTableViewCell {
             let commentAtIndex = self.comments[indexPath.row - 1]
             commentCell.configureCellWithComment(commentAtIndex)
+            commentCell.delegate = self
         }
         return cell
     }
@@ -44,6 +46,26 @@ class CommentsTableViewController: UITableViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.comments = self.article["comments"]
+    
     }
 
+    // MARK: - CommentTableViewCellDelegate Methods
+    
+    func commentTableViewCellUpvoteButtonDidTouch(cell: CommentTableViewCell) {
+        
+    }
+    
+    func commentTableViewCellCommentButtonDidTouch(cell: CommentTableViewCell) {
+        <#code#>
+    }
+    
+    // MARK: - StoryTableViewCellDelegate
+    
+    func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell) {
+        <#code#>
+    }
+    
+    func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {
+        <#code#>
+    }
 }

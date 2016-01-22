@@ -8,17 +8,17 @@
 
 import UIKit
 
-protocol MenuviewControllerDelegate: NSObjectProtocol {
-    func menuViewControllerTopStoriesButtonDidTouch()
-    func menuViewcontrollerRecentStoriesButtonDidTouch()
-    func menuViewControllerLoginButtonDidTouch()
+protocol MenuViewControllerDelegate: NSObjectProtocol {
+    func menuViewControllerTopStoriesButtonDidTouch(viewController: MenuViewController)
+    func menuViewcontrollerRecentStoriesButtonDidTouch(viewController: MenuViewController)
+    func menuViewControllerLoginButtonDidTouch(viewController: MenuViewController)
 }
 
 class MenuViewController: UIViewController {
     
     // MARK: - Stored Properties
     
-    weak var delegate: MenuviewControllerDelegate?
+    weak var delegate: MenuViewControllerDelegate?
     
     // MARK: - IBOutlet Properties
     
@@ -34,12 +34,12 @@ class MenuViewController: UIViewController {
     }
     
     @IBAction func topStoriesButtonDidTouch(sender: UIButton) {
-        self.delegate?.menuViewControllerTopStoriesButtonDidTouch()
+        self.delegate?.menuViewControllerTopStoriesButtonDidTouch(self)
         self.closeButtonDidTouch(sender)
     }
     
     @IBAction func recentStoriesButtonDidTouch(sender: UIButton) {
-        self.delegate?.menuViewcontrollerRecentStoriesButtonDidTouch()
+        self.delegate?.menuViewcontrollerRecentStoriesButtonDidTouch(self)
         self.closeButtonDidTouch(sender)
     }
     
@@ -47,7 +47,7 @@ class MenuViewController: UIViewController {
         if LocalDefaults.loadToken() != nil {
             LocalDefaults.deleteToken()
             self.closeButtonDidTouch(sender)
-            self.delegate?.menuViewControllerLoginButtonDidTouch()
+            self.delegate?.menuViewControllerLoginButtonDidTouch(self)
         }
         else {
             self.performSegueWithIdentifier("LoginSegue", sender: self)

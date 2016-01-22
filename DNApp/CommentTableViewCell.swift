@@ -8,7 +8,16 @@
 
 import UIKit
 
+protocol CommentTableViewCellDelegate: NSObjectProtocol {
+    func commentTableViewCellUpvoteButtonDidTouch(cell: CommentTableViewCell)
+    func commentTableViewCellCommentButtonDidTouch(cell: CommentTableViewCell)
+}
+
 class CommentTableViewCell: UITableViewCell {
+    
+    // MARK: - Stored Properties
+    
+    weak var delegate: CommentTableViewCellDelegate?
 
     // MARK: - IBOutlet Properties
     
@@ -22,11 +31,11 @@ class CommentTableViewCell: UITableViewCell {
     // MARK: - IBAction Properties
     
     @IBAction func upvoteButtonDidTouch(sender: SpringButton) {
-        
+        self.delegate?.commentTableViewCellUpvoteButtonDidTouch(self)
     }
     
     @IBAction func replyButtonDidTouch(sender: SpringButton) {
-        
+        self.delegate?.commentTableViewCellCommentButtonDidTouch(self)
     }
     
     // MARK: - Local Methods

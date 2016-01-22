@@ -9,7 +9,6 @@
 import UIKit
 
 protocol StoryTableViewCellDelegate: NSObjectProtocol {
-    
     func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell)
     func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell)
 }
