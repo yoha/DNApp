@@ -48,6 +48,8 @@ struct DNService {
     
     // MARK: - Local Methods
     
+    // MARK: Get stories
+    
     static func getStoriesForSection(section: String, page: Int, responseInJSON:(JSON) -> ()) {
         let urlStringToAPI = self.baseURL + self.ResourcePath.Stories.description + "/" + section
         let parameters = [
@@ -61,6 +63,8 @@ struct DNService {
             responseInJSON(stories)
         }
     }
+    
+    // MARK: Login
     
     static func loginWithEmail(email: String, password: String, responseAsClosure: (token: String?) -> ()) {
         let urlStringToAPI = self.baseURL + self.ResourcePath.Login.description
@@ -81,13 +85,12 @@ struct DNService {
             // response(stories)
             guard let validDataFromResponse = response.data else { return }
             let dataAsSwiftyJSON = JSON(validDataFromResponse)
-            guard let validAccessToken = dataAsSwiftyJSON["access_token"].string else {
-                print("no acccess token received")
-                return
-            }
+            guard let validAccessToken = dataAsSwiftyJSON["access_token"].string else { print("no acccess token received"); return }
             responseAsClosure(token: validAccessToken)
         }
     }
+    
+    // MARK: Upvote story / comment
     
     static func upvoteStoryWithID(storyID: Int, token: String, responseAsClosure: (successful: Bool) -> ()) {
         let urlStringToAPI = self.baseURL + self.ResourcePath.StoryUpvote(storyID: storyID).description
@@ -109,6 +112,33 @@ struct DNService {
             guard let validURLResponse = response.response else { return }
             let successfulResponse = validURLResponse.statusCode == 200
             responseAsClosure(successful: successfulResponse)
+        }
+    }
+    
+    // MARK: Reply story / comment
+    
+    static func replyStoryWithID(storyID: Int, token: String, body: String, responseAsClosure: (successful: Bool) ->()) {
+        let urlStringToAPI = self.baseURL + self.ResourcePath.StoryReply(storyID: storyID).description
+        self.replyWithURLStringToAPI(urlStringToAPI, token: token, body: body, responseAsClosure: responseAsClosure)
+    }
+    
+    static func replyCommentWithID(commentID: Int, token: String, body: String, responseAsClosure: (successful: Bool) -> ()) {
+        let urlStringToAPI = self.baseURL + self.ResourcePath.CommentReply(commentID: commentID).description
+        self.replyWithURLStringToAPI(urlStringToAPI, token: token, body: body, responseAsClosure: responseAsClosure)
+    }
+    
+    private static func replyWithURLStringToAPI(urlStringToAPI: String, token: String, body: String, responseAsClosure: (successful: Bool) -> ()) {
+        guard let validUrlFromAPI = NSURL(string: urlStringToAPI) else { return }
+        let urlRequest = NSMutableURLRequest(URL: validUrlFromAPI)
+        urlRequest.HTTPMethod = "POST"
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.HTTPBody = "comment[body]=\(body)".dataUsingEncoding(NSUTF8StringEncoding)
+        
+        Alamofire.request(urlRequest).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
+            guard let validDataFromResponse = response.data else { return }
+            let dataAsSwiftyJSON = JSON(validDataFromResponse)
+            guard let validComment = dataAsSwiftyJSON["comment"].string else { responseAsClosure(successful: false); return }
+            responseAsClosure(successful: true)
         }
     }
 }
