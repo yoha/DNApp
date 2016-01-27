@@ -46,6 +46,8 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.comments = self.article["comments"]
+        
+        self.refreshControl?.addTarget(self, action: "reloadStory", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -118,5 +120,22 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     
     func replyViewControllerReplyButtonDidTouch(controller: ReplyViewController) {
         // do next
+    }
+    
+    // MARK: - Local Methods
+    
+    private func reloadStory() {
+        self.view.showLoading()
+        
+        DNService.getStoryForID(self.article["id"].int!) { [unowned self] (response: JSON) -> () in
+            self.view.hideLoading()
+            
+            self.article = response["story"]
+            self.comments = response["story"]["comments"]
+
+            self.tableView.reloadData()
+            
+            self.refreshControl?.endRefreshing()
+        }
     }
 }

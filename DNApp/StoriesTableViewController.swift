@@ -71,7 +71,7 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         
         self.loadArticlesInSection("", page: 1)
         
-        refreshControl?.addTarget(self, action: "refreshStories", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action: "refreshStories", forControlEvents: UIControlEvents.ValueChanged)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -164,7 +164,7 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     // MARK: - Local Methods
     
-    func loadArticlesInSection(section: String, page: Int) {
+    private func loadArticlesInSection(section: String, page: Int) {
         DNService.getStoriesForSection(section, page: page) { [unowned self] (response: JSON) -> () in
             self.articles = response["stories"]
             
@@ -179,7 +179,7 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.loginButton.enabled = LocalDefaults.loadToken() == nil ? true : false
     }
     
-    func refreshStories() {
+    private func refreshStories() {
         self.loadArticlesInSection(self.articleSection, page: 1)
     }
 }
