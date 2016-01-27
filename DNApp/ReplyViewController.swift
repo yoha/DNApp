@@ -22,7 +22,33 @@ class ReplyViewController: UIViewController {
     // MARK: - IBAction Properties
     
     @IBAction func sendButtonDidTouch(sender: UIButton) {
+        self.view.showLoading()
         
+        guard let validToken = LocalDefaults.loadToken() else { return }
+        guard let validReply = self.replyTextView.text where !validReply.isEmpty else { return }
+        
+        if let validStoryID = self.story["id"].int {
+            DNService.replyStoryWithID(validStoryID, token: validToken, body: validReply, responseAsClosure: { [unowned self] (successful) -> () in
+                self.view.hideLoading()
+                if successful {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                else {
+                    // showAlert
+                }
+            })
+        }
+        else if let validCommentID = self.comment["id"].int {
+            DNService.replyCommentWithID(validCommentID, token: validToken, body: validReply, responseAsClosure: { [unowned self] (successful) -> () in
+                self.view.hideLoading()
+                if successful {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
+                else {
+                    // showAlert
+                }
+            })
+        }
     }
     
     // MARK: - UIViewController Methods
