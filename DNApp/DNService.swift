@@ -50,7 +50,7 @@ struct DNService {
     
     // MARK: Get stories
     
-    static func getStoriesForSection(section: String, page: Int, responseInJSON:(JSON) -> ()) {
+    static func getStoriesForSection(section: String, page: Int, responseInJSON: (JSON) -> ()) {
         let urlStringToAPI = self.baseURL + self.ResourcePath.Stories.description + "/" + section
         let parameters = [
             "page": String(page),
@@ -61,6 +61,19 @@ struct DNService {
             guard let validResultValueFromResponse = response.result.value else { return }
             let stories = JSON(validResultValueFromResponse ?? [])
             responseInJSON(stories)
+        }
+    }
+    
+    static func getStoryForID(storyID: Int, responseInJSON: (JSON) -> ()) {
+        let urlStringToAPI = self.baseURL + self.ResourcePath.StoryID(storyID: storyID).description
+        let parameters = [
+            "client_id": self.clientID
+        ]
+        
+        Alamofire.request(.GET, urlStringToAPI, parameters: parameters).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
+            guard let validResultValueFromResponse = response.result.value else { return }
+            let story = JSON(validResultValueFromResponse ?? [])
+            responseInJSON(story)
         }
     }
     

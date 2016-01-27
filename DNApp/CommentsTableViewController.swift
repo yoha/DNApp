@@ -117,6 +117,6 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     // MARK: - ReplyViewControllerDelegate Methods
     
     func replyViewControllerReplyButtonDidTouch(controller: ReplyViewController) {
-        <#code#>
+        // do next
     }
 }
