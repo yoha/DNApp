@@ -69,7 +69,11 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     }
     
     func commentTableViewCellCommentButtonDidTouch(cell: CommentTableViewCell) {
-    
+        guard let validToken = LocalDefaults.loadToken() else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            return
+        }
+        self.performSegueWithIdentifier("replyCommentSegue", sender: self)
     }
     
     // MARK: - StoryTableViewCellDelegate
@@ -90,6 +94,10 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     }
     
     func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {
-        
+        guard let validToken = LocalDefaults.loadToken() else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+            return
+        }
+        self.performSegueWithIdentifier("replyCommentSegue", sender: self)
     }
 }
