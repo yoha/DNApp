@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentsTableViewController: UITableViewController, CommentTableViewCellDelegate, StoryTableViewCellDelegate {
+class CommentsTableViewController: UITableViewController, CommentTableViewCellDelegate, StoryTableViewCellDelegate, ReplyViewControllerDelegate {
     
     // MARK - Stored Properties
     
@@ -59,7 +59,7 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         else if let _ = sender as? StoryTableViewCell {
             validDestinationViewController.story = self.article
         }
-
+        validDestinationViewController.delegate = self
     }
 
     // MARK: - CommentTableViewCellDelegate Methods
@@ -89,7 +89,7 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
     }
     
-    // MARK: - StoryTableViewCellDelegate
+    // MARK: - StoryTableViewCellDelegate Methods
     
     func StoryTableViewCellUpvoteButtonDidTouch(cell: StoryTableViewCell) {
         guard let validToken = LocalDefaults.loadToken() else {
@@ -112,5 +112,11 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
             return
         }
         self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
+    }
+    
+    // MARK: - ReplyViewControllerDelegate Methods
+    
+    func replyViewControllerReplyButtonDidTouch(controller: ReplyViewController) {
+        <#code#>
     }
 }

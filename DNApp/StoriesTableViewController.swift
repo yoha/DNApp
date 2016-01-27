@@ -112,7 +112,7 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     // MARK: - LoginViewControllerDelegate Methods
     
-    func loginViewControllerDidLogin(controller: LoginViewController) {
+    func loginViewControllerLoginButtonDidTouch(controller: LoginViewController) {
         self.view.showLoading()
         self.refreshStories()
     }

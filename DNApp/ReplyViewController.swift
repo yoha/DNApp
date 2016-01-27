@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol ReplyViewControllerDelegate: NSObjectProtocol {
+    func replyViewControllerReplyButtonDidTouch(controller: ReplyViewController)
+}
+
 class ReplyViewController: UIViewController {
 
     // MARK: - Stored Properties
     
     var story: JSON = []
     var comment: JSON = []
+    
+    weak var delegate: ReplyViewControllerDelegate?
     
     // MARK: - IBOutlet Properties
     
@@ -31,6 +37,7 @@ class ReplyViewController: UIViewController {
             DNService.replyStoryWithID(validStoryID, token: validToken, body: validReply, responseAsClosure: { [unowned self] (successful) -> () in
                 self.view.hideLoading()
                 if successful {
+                    self.delegate?.replyViewControllerReplyButtonDidTouch(self)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else {
@@ -42,6 +49,7 @@ class ReplyViewController: UIViewController {
             DNService.replyCommentWithID(validCommentID, token: validToken, body: validReply, responseAsClosure: { [unowned self] (successful) -> () in
                 self.view.hideLoading()
                 if successful {
+                    self.delegate?.replyViewControllerReplyButtonDidTouch(self)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else {

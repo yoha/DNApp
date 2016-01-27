@@ -9,7 +9,7 @@
 import UIKit
 
 protocol LoginViewControllerDelegate: NSObjectProtocol {
-    func loginViewControllerDidLogin(controller: LoginViewController)
+    func loginViewControllerLoginButtonDidTouch(controller: LoginViewController)
 }
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             LocalDefaults.saveToken(validToken)
-            self.delegate?.loginViewControllerDidLogin(self)
+            self.delegate?.loginViewControllerLoginButtonDidTouch(self)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
