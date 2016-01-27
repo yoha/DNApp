@@ -32,6 +32,7 @@
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
             <string>AvenirNext-Regular</string>
+            <string>AvenirNext-Regular</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -612,10 +613,10 @@
             </objects>
             <point key="canvasLocation" x="2130" y="-610"/>
         </scene>
-        <!--View Controller-->
+        <!--Reply View Controller-->
         <scene sceneID="jxr-Tw-Nln">
             <objects>
-                <viewController id="yvb-gM-2TP" sceneMemberID="viewController">
+                <viewController id="yvb-gM-2TP" customClass="ReplyViewController" customModule="DNApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gEu-HW-60R"/>
                         <viewControllerLayoutGuide type="bottom" id="U1x-Hb-FSJ"/>
@@ -624,17 +625,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="6-Comment" translatesAutoresizingMaskIntoConstraints="NO" id="q6I-mh-e2o">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwg-v0-zuF">
                                 <rect key="frame" x="5" y="20" width="44" height="44"/>
                                 <connections>
                                     <segue destination="bhA-Kz-die" kind="unwind" unwindAction="unwindToViewController:" id="a0L-Zl-Thc"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Oh-MZ-9PU">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="9Bl-YY-ONd"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.16862745100000001" green="0.38431372549999998" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Reply" id="QMq-9N-kyi">
+                                        <barButtonItem key="leftBarButtonItem" image="icon-close" id="uGB-xT-xGt">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Send" id="YBy-QK-ZdB">
+                                            <color key="tintColor" red="0.21568627450980393" green="0.72941176470588232" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="B2i-7d-3M9">
+                                <rect key="frame" x="10" y="74" width="580" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0Oh-MZ-9PU" secondAttribute="trailing" id="0MM-bB-suc"/>
+                            <constraint firstAttribute="trailing" secondItem="B2i-7d-3M9" secondAttribute="trailing" constant="10" id="6F4-nJ-QWD"/>
+                            <constraint firstItem="0Oh-MZ-9PU" firstAttribute="leading" secondItem="QtJ-R6-bwD" secondAttribute="leading" id="8LC-fU-SSf"/>
+                            <constraint firstItem="B2i-7d-3M9" firstAttribute="top" secondItem="0Oh-MZ-9PU" secondAttribute="bottom" constant="10" id="Nc8-kO-oP3"/>
+                            <constraint firstItem="B2i-7d-3M9" firstAttribute="leading" secondItem="QtJ-R6-bwD" secondAttribute="leading" constant="10" id="TIe-3e-grE"/>
+                            <constraint firstItem="U1x-Hb-FSJ" firstAttribute="top" secondItem="B2i-7d-3M9" secondAttribute="bottom" constant="10" id="brJ-GT-D83" customClass="KeyboardLayoutConstraint" customModule="DNApp" customModuleProvider="target"/>
+                            <constraint firstItem="0Oh-MZ-9PU" firstAttribute="top" secondItem="QtJ-R6-bwD" secondAttribute="top" id="xQR-rd-72O"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEt-58-wLa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -963,7 +997,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="6-Comment" width="320" height="568"/>
         <image name="action-share" width="19" height="27"/>
         <image name="bg-credits" width="280" height="140"/>
         <image name="big-credits" width="47" height="44"/>

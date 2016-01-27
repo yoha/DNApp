@@ -46,7 +46,20 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.comments = self.article["comments"]
+    }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard segue.identifier == "replyCommentSegue",
+                let validDestinationViewController = segue.destinationViewController as? ReplyViewController else { return }
+        if let commentTableViewCell = sender as? CommentTableViewCell {
+            guard let validIndexPath = self.tableView.indexPathForCell(commentTableViewCell) else { return }
+            let commentToBePassed = self.comments[validIndexPath.row - 1]
+            validDestinationViewController.comment = commentToBePassed
+        }
+        else if let _ = sender as? StoryTableViewCell {
+            validDestinationViewController.story = self.article
+        }
+
     }
 
     // MARK: - CommentTableViewCellDelegate Methods
@@ -73,7 +86,7 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
             self.performSegueWithIdentifier("LoginSegue", sender: self)
             return
         }
-        self.performSegueWithIdentifier("replyCommentSegue", sender: self)
+        self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
     }
     
     // MARK: - StoryTableViewCellDelegate
@@ -98,6 +111,6 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
             self.performSegueWithIdentifier("LoginSegue", sender: self)
             return
         }
-        self.performSegueWithIdentifier("replyCommentSegue", sender: self)
+        self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
     }
 }

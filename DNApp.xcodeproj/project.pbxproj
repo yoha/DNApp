@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		650604D21C30DFF100F949ED /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650604D11C30DFF100F949ED /* LoginViewController.swift */; };
+		6525298D1C587C8E00A8B0DC /* ReplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6525298C1C587C8E00A8B0DC /* ReplyViewController.swift */; };
 		6525D3591C4CDAD500F8F8E4 /* LocalDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6525D3581C4CDAD500F8F8E4 /* LocalDefaults.swift */; };
 		653904C31C3A1F0E003C8F18 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653904C21C3A1F0E003C8F18 /* Data.swift */; };
 		653904C51C3BB33B003C8F18 /* CommentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 653904C41C3BB33B003C8F18 /* CommentsTableViewController.swift */; };
@@ -136,6 +137,7 @@
 
 /* Begin PBXFileReference section */
 		650604D11C30DFF100F949ED /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		6525298C1C587C8E00A8B0DC /* ReplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyViewController.swift; sourceTree = "<group>"; };
 		6525D3581C4CDAD500F8F8E4 /* LocalDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalDefaults.swift; sourceTree = "<group>"; };
 		653904C21C3A1F0E003C8F18 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		653904C41C3BB33B003C8F18 /* CommentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsTableViewController.swift; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				658880AA1C355F380025EC04 /* StoryTableViewCell.swift */,
 				653904C41C3BB33B003C8F18 /* CommentsTableViewController.swift */,
 				65E56DF01C3CEE2F00AA4E42 /* CommentTableViewCell.swift */,
+				6525298C1C587C8E00A8B0DC /* ReplyViewController.swift */,
 				650604D11C30DFF100F949ED /* LoginViewController.swift */,
 				6596E4641C312F03009A2AE4 /* LearnViewController.swift */,
 				65F508591C33B86500FA8EDB /* MenuViewController.swift */,
@@ -477,6 +480,7 @@
 				6564E7A21C2C3DF800BD3587 /* Misc.swift in Sources */,
 				65BBBA1B1C43663A004C64CB /* TPKeyboardAvoidingScrollView.m in Sources */,
 				6596E4651C312F03009A2AE4 /* LearnViewController.swift in Sources */,
+				6525298D1C587C8E00A8B0DC /* ReplyViewController.swift in Sources */,
 				65E56DEF1C3CC27300AA4E42 /* SwiftyJSON.swift in Sources */,
 				65BBBA1C1C43663A004C64CB /* TPKeyboardAvoidingTableView.m in Sources */,
 				653904C31C3A1F0E003C8F18 /* Data.swift in Sources */,
