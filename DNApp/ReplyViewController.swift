@@ -34,7 +34,7 @@ class ReplyViewController: UIViewController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else {
-                    // showAlert
+                    self.showAlert()
                 }
             })
         }
@@ -45,7 +45,7 @@ class ReplyViewController: UIViewController {
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
                 else {
-                    // showAlert
+                    self.showAlert()
                 }
             })
         }
@@ -57,6 +57,14 @@ class ReplyViewController: UIViewController {
         super.viewDidLoad()
         
         self.replyTextView.becomeFirstResponder()
+    }
+    
+    // MARK: - Local Methods
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: "Oh..no!!", message: "Something went wrong. Your message wasn't sent. Try again and save your text just in case.", preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 
 }
