@@ -150,8 +150,7 @@ struct DNService {
         Alamofire.request(urlRequest).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
             guard let validDataFromResponse = response.data else { return }
             let dataAsSwiftyJSON = JSON(validDataFromResponse)
-            guard let validComment = dataAsSwiftyJSON["comment"].string else { responseAsClosure(successful: false); return }
-            responseAsClosure(successful: true)
+            dataAsSwiftyJSON["comment"].string != nil ? responseAsClosure(successful: true) : responseAsClosure(successful: false)
         }
     }
 }

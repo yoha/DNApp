@@ -84,11 +84,12 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     }
     
     func commentTableViewCellCommentButtonDidTouch(cell: CommentTableViewCell) {
-        guard let validToken = LocalDefaults.loadToken() else {
-            self.performSegueWithIdentifier("LoginSegue", sender: self)
-            return
+        if LocalDefaults.loadToken() != nil {
+            self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
         }
-        self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
+        else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+        }
     }
     
     // MARK: - StoryTableViewCellDelegate Methods
@@ -109,17 +110,18 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     }
     
     func StoryTableViewCellCommentButtonDidTouch(cell: StoryTableViewCell) {
-        guard let validToken = LocalDefaults.loadToken() else {
-            self.performSegueWithIdentifier("LoginSegue", sender: self)
-            return
+        if LocalDefaults.loadToken() != nil {
+            self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
         }
-        self.performSegueWithIdentifier("replyCommentSegue", sender: cell)
+        else {
+            self.performSegueWithIdentifier("LoginSegue", sender: self)
+        }
     }
     
     // MARK: - ReplyViewControllerDelegate Methods
     
     func replyViewControllerReplyButtonDidTouch(controller: ReplyViewController) {
-        // do next
+        self.reloadStory()
     }
     
     // MARK: - Local Methods
