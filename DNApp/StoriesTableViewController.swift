@@ -184,5 +184,6 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
     
     func refreshStories() {
         self.loadArticlesInSection(self.articleSection, page: 1)
+        SoundPlayer.playSound("refresh.wav")
     }
 }

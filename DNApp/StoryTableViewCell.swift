@@ -40,6 +40,8 @@ class StoryTableViewCell: UITableViewCell {
         self.upvoteButton.animation = "pop"
         self.upvoteButton.force = 3.0
         self.upvoteButton.animate()
+        
+        SoundPlayer.playSound("upvote.wav")
     }
     
     @IBAction func commentButtonDidTouch(sender: SpringButton) {
