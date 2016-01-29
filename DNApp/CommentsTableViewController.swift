@@ -50,6 +50,8 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         self.comments = self.flattenComments(self.article["comments"].array ?? [])
         
         self.refreshControl?.addTarget(self, action: "reloadStory", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Avenir Next", size: 18)!], forState: .Normal)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

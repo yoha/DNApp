@@ -72,6 +72,8 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.loadArticlesInSection("", page: 1)
         
         self.refreshControl?.addTarget(self, action: "refreshStories", forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.loginButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Avenir Next", size: 18)!], forState: UIControlState.Normal)
     }
     
     override func viewDidAppear(animated: Bool) {
