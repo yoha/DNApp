@@ -13,7 +13,7 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     // MARK - Stored Properties
     
     var article: JSON!
-    var comments: JSON!
+    var comments: [JSON]!
     
     // MARK: - UITableViewDataSource Methods
     
@@ -45,7 +45,7 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         self.tableView.estimatedRowHeight = 140
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
-        self.comments = self.article["comments"]
+        self.comments = self.flattenComments(self.article["comments"].array ?? [])
         
         self.refreshControl?.addTarget(self, action: "reloadStory", forControlEvents: UIControlEvents.ValueChanged)
     }
@@ -126,18 +126,28 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     
     // MARK: - Local Methods
     
-    private func reloadStory() {
+    func reloadStory() {
         self.view.showLoading()
-        
-        DNService.getStoryForID(self.article["id"].int!) { [unowned self] (response: JSON) -> () in
-            self.view.hideLoading()
-            
+        DNService.getStoryForID(self.article["id"].int!) { [unowned self] (response: JSON) -> () in    
             self.article = response["story"]
-            self.comments = response["story"]["comments"]
+            self.comments = self.flattenComments(response["story"]["comments"].array ?? [])
 
             self.tableView.reloadData()
             
+            self.view.hideLoading()
             self.refreshControl?.endRefreshing()
+        }
+    }
+    
+    func flattenComments(comments: [JSON]) -> [JSON] {
+        let flattenedComments = comments.map(commentsForComment).reduce([], combine: +)
+        return flattenedComments
+    }
+    
+    func commentsForComment(comment: JSON) -> [JSON] {
+        let comments = comment["comments"].array ?? []
+        return comments.reduce([comment]) { acc, x in
+            acc + self.commentsForComment(x)
         }
     }
 }

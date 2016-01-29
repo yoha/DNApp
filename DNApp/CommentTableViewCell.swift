@@ -21,12 +21,16 @@ class CommentTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlet Properties
     
+    @IBOutlet weak var indentView: UIView!
+    
     @IBOutlet weak var avatarImageView: AsyncImageView!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var upvoteButton: SpringButton!
     @IBOutlet weak var replyButton: SpringButton!
     @IBOutlet weak var commentTextView: AutoTextView!
+
+    @IBOutlet weak var avatarLeftConstraint: NSLayoutConstraint!
     
     // MARK: - IBAction Properties
     
@@ -72,6 +76,17 @@ class CommentTableViewCell: UITableViewCell {
             self.upvoteButton.setImage(UIImage(named: "icon-upvote"), forState: .Normal)
             self.upvoteButton.setTitle(String(validVoteCount), forState: .Normal)
         }
+        
+        let commentDepth = comment["depth"].int! > 4 ? 4 : comment["depth"].int!
+        if commentDepth > 0 {
+            self.avatarLeftConstraint.constant = CGFloat(commentDepth) * 20 + 25
+            self.separatorInset = UIEdgeInsets(top: 0.0, left: CGFloat(commentDepth) * 20 + 15, bottom: 0.0, right: 0.0)
+            self.indentView.hidden = false
+        }
+        else {
+            self.avatarLeftConstraint.constant = 10.0
+            self.separatorInset = UIEdgeInsets(top: 0.0, left: 35.0, bottom: 0.0, right: 0.0)
+            self.indentView.hidden = true
+        }
     }
-    
 }

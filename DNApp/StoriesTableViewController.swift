@@ -179,7 +179,7 @@ class StoriesTableViewController: UITableViewController, StoryTableViewCellDeleg
         self.loginButton.enabled = LocalDefaults.loadToken() == nil ? true : false
     }
     
-    private func refreshStories() {
+    func refreshStories() {
         self.loadArticlesInSection(self.articleSection, page: 1)
     }
 }
