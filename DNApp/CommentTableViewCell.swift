@@ -36,10 +36,18 @@ class CommentTableViewCell: UITableViewCell {
     
     @IBAction func upvoteButtonDidTouch(sender: SpringButton) {
         self.delegate?.commentTableViewCellUpvoteButtonDidTouch(self)
+        
+        self.upvoteButton.animation = "pop"
+        self.upvoteButton.force = 3.0
+        self.upvoteButton.animate()
     }
     
     @IBAction func replyButtonDidTouch(sender: SpringButton) {
         self.delegate?.commentTableViewCellCommentButtonDidTouch(self)
+        
+        self.replyButton.animation = "pop"
+        self.replyButton.force = 3.0
+        self.replyButton.animate()
     }
     
     // MARK: - Local Methods
