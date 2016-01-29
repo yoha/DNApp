@@ -268,7 +268,7 @@
             </objects>
             <point key="canvasLocation" x="342" y="1164"/>
         </scene>
-        <!--Comments Table View Controller-->
+        <!--Title-->
         <scene sceneID="Vka-mT-96t">
             <objects>
                 <tableViewController id="WdE-9M-lsy" customClass="CommentsTableViewController" customModule="DNApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -501,6 +501,13 @@
                             <outlet property="delegate" destination="WdE-9M-lsy" id="vNB-Cv-6Kp"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Title" id="Wp6-Hg-2M1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="IdY-5W-w5a">
+                            <connections>
+                                <action selector="actionBarButtonItemDidTouch:" destination="WdE-9M-lsy" id="BFZ-Hz-6hm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="e78-0R-iHg">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>

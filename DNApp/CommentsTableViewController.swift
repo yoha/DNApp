@@ -17,6 +17,18 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     
     var transitionManager = TransitionManager()
     
+    // MARK: - IBAction Properties
+    
+    @IBAction func actionBarButtonItemDidTouch(sender: UIBarButtonItem) {
+        let articleTitle = self.article["title"].string ?? ""
+        let articleUrl = self.article["url"].string ?? ""
+        
+        let activityViewController = UIActivityViewController(activityItems: [articleTitle, articleUrl], applicationActivities: nil)
+        activityViewController.setValue(articleTitle, forKey: "subject")
+        activityViewController.excludedActivityTypes = [UIActivityTypeAirDrop]
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+    
     // MARK: - UITableViewDataSource Methods
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,8 +62,6 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
         self.comments = self.flattenComments(self.article["comments"].array ?? [])
         
         self.refreshControl?.addTarget(self, action: "reloadStory", forControlEvents: UIControlEvents.ValueChanged)
-        
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Avenir Next", size: 18)!], forState: .Normal)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
