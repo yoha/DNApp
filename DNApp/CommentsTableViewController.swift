@@ -15,6 +15,8 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
     var article: JSON!
     var comments: [JSON]!
     
+    var transitionManager = TransitionManager()
+    
     // MARK: - UITableViewDataSource Methods
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -62,6 +64,7 @@ class CommentsTableViewController: UITableViewController, CommentTableViewCellDe
             validDestinationViewController.story = self.article
         }
         validDestinationViewController.delegate = self
+        validDestinationViewController.transitioningDelegate = transitionManager
     }
 
     // MARK: - CommentTableViewCellDelegate Methods
