@@ -14,8 +14,8 @@ struct DNService {
     // MARK: - Stored Properties
     
     private static let baseURL = "https://www.designernews.co"
-    private static let clientID = "750ab22aac78be1c6d4bbe584f0e3477064f646720f327c5464bc127100a1a6d"
-    private static let clientSecret = "53e3822c49287190768e009a8f8e55d09041c5bf26d0ef982693f215c72d87da"
+    private static let clientID = "06abf39aab6a3b4d0aac2da48e3a5d0ffff4bfdbe80a449f1dc3bf72aa9aa357"
+    private static let clientSecret = "5e97fbca0270e378d123d32872950001ad17262807811bd2ab9f60c5c4c74686"
     
     private enum ResourcePath: CustomStringConvertible {
         case Login
@@ -90,14 +90,8 @@ struct DNService {
         ]
         
         Alamofire.request(.POST, urlStringToAPI, parameters: loginParameters).responseJSON { (response: Response<AnyObject, NSError>) -> Void in
-            // let json = JSON(data!)
-            // let token = json["access_token"].string
-            // response(token: token)
-            //
-            // let stories = JSON(data ?? [])
-            // response(stories)
-            guard let validDataFromResponse = response.data else { return }
-            let dataAsSwiftyJSON = JSON(validDataFromResponse)
+            guard let validResultValueFromResponse = response.result.value else { return }
+            let dataAsSwiftyJSON = JSON(validResultValueFromResponse)
             guard let validAccessToken = dataAsSwiftyJSON["access_token"].string else { print("no acccess token received"); return }
             responseAsClosure(token: validAccessToken)
         }
