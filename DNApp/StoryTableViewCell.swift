@@ -80,12 +80,13 @@ class StoryTableViewCell: UITableViewCell {
        
         guard let validCommentCount = article["comment_count"].int else { return }
         self.commentButton.setTitle("\(validCommentCount)", forState: .Normal)
-        
-        guard let validCommentTextView = self.commentTextView else { return }
-        guard let validComment = article["comment"].string else { return }
-        validCommentTextView.text = validComment
-        let commentHTML = article["comment_html"].string ?? ""
-        validCommentTextView.attributedText = htmlToAttributedString(commentHTML + "<style>*{font-family:\"Avenir Next\";font-size:16px;line-height:20px}img{max-width:300px}</style>")
+
+        if let validCommentTextView = self.commentTextView {
+            let validComment = article["comment"].string ?? ""
+            validCommentTextView.text = validComment
+            let commentInHTML = article["comment_html"].string ?? ""
+            validCommentTextView.attributedText = htmlToAttributedString(commentInHTML + "<style>*{font-family:\"Avenir Next\";font-size:16px;line-height:20px}img{max-width:300px}</style>")
+        }
         
         guard let validArticleID = article["id"].int else { return }
         if LocalDefaults.isStoryUpvoted(validArticleID) {

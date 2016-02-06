@@ -27,7 +27,7 @@ class ReplyViewController: UIViewController {
     
     // MARK: - IBAction Properties
     
-    @IBAction func sendButtonDidTouch(sender: UIButton) {
+    @IBAction func sendButtonDidTouch(sender: UIBarButtonItem) {
         self.view.showLoading()
         
         guard let validToken = LocalDefaults.loadToken() else { return }
